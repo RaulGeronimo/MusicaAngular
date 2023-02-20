@@ -10,6 +10,15 @@ const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./rutas/indexRoutes"));
 /* CRUD */
 const paisRoutes_1 = __importDefault(require("./rutas/paisRoutes"));
+const instrumentoRoutes_1 = __importDefault(require("./rutas/instrumentoRoutes"));
+const artistaRoutes_1 = __importDefault(require("./rutas/artistaRoutes"));
+const grupoRoutes_1 = __importDefault(require("./rutas/grupoRoutes"));
+const disqueraRoutes_1 = __importDefault(require("./rutas/disqueraRoutes"));
+const albumRoutes_1 = __importDefault(require("./rutas/albumRoutes"));
+const cancionesRoutes_1 = __importDefault(require("./rutas/cancionesRoutes"));
+/* TABLAS PUENTE */
+const artista_grupoRoutes_1 = __importDefault(require("./rutas/artista_grupoRoutes"));
+const canciones_albumRoutes_1 = __importDefault(require("./rutas/canciones_albumRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -27,6 +36,22 @@ class Server {
         this.app.use(indexRoutes_1.default);
         /* PAIS / NACIONALIDAD */
         this.app.use('/app/pais', paisRoutes_1.default);
+        /* INSTRUMENTO */
+        this.app.use('/app/instrumento', instrumentoRoutes_1.default);
+        /* ARTISTA */
+        this.app.use('/app/artista', artistaRoutes_1.default);
+        /* GRUPO */
+        this.app.use('/app/grupo', grupoRoutes_1.default);
+        /* ARTISTA GRUPO */
+        this.app.use('/app/artista_Grupo', artista_grupoRoutes_1.default);
+        /* DISQUERA */
+        this.app.use('/app/disquera', disqueraRoutes_1.default);
+        /* ALBUM */
+        this.app.use('/app/album', albumRoutes_1.default);
+        /* CANCIONES */
+        this.app.use('/app/canciones', cancionesRoutes_1.default);
+        /* CANCIONES ALBUM */
+        this.app.use('/app/canciones_Album', canciones_albumRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
