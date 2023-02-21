@@ -1,0 +1,42 @@
+<div class="col-md-5 offset-md-3 inicio">
+    <div class="card">
+      <div class="card-body">
+        <form>
+  
+          <!-- Nombre -->
+          <div class="card-body">
+            <input type="text" name="Nombre" [(ngModel)]="instrumentos.Nombre" placeholder="Nombre del Pais:"
+              class="form-control" autofocus required>
+          </div>
+  
+          <!-- Descripcion -->
+          <div class="card-body">
+            <textarea name="Descripcion" [(ngModel)]="instrumentos.Descripcion" placeholder="Descripcion del Instrumento:"
+              rows="4" class="form-control" required></textarea>
+          </div>
+  
+          <!-- Foto -->
+          <div class="card-body">
+            <input type="url" name="Foto" [(ngModel)]="instrumentos.Foto" placeholder="Foto:" class="form-control"
+              required>
+          </div>
+  
+          <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+            Aceptar
+          </button>
+          <a href="/instrumento" type="button" class="btn btn-primary">Regresar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 inicio">
+    <div class="card card-body text-center">
+      <img [src]="instrumentos.Foto == '' ? '/assets/noImagen.png' : instrumentos.Foto " class="card-img-top">
+      <h3 style="text-transform: uppercase;">
+        {{instrumentos.idInstrumento}} - {{instrumentos.Nombre == '' ? 'Nombre del Instrumento' : instrumentos.Nombre}}
+      </h3>
+      <p>{{instrumentos.Descripcion == '' ? 'Descripcion' : instrumentos.Descripcion}}</p>
+    </div>
+  </div>
+  
