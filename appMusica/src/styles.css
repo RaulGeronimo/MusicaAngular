@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-image: url(/assets/fondo.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .inicio {
+    margin-block-start: 60px;
+    margin-block-end: 10px;
+  }
+  
+  #imagen {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  #imagenArtista {
+    width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+  }
+  
+  #imagenGrupo {
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+    max-width: 500px;
+  }
+  
