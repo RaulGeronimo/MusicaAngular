@@ -19,6 +19,11 @@ const cancionesRoutes_1 = __importDefault(require("./rutas/cancionesRoutes"));
 /* TABLAS PUENTE */
 const artista_grupoRoutes_1 = __importDefault(require("./rutas/artista_grupoRoutes"));
 const canciones_albumRoutes_1 = __importDefault(require("./rutas/canciones_albumRoutes"));
+/* BUSQUEDA */
+const buscaArbum_grupoRoutes_1 = __importDefault(require("./rutas/buscaArbum_grupoRoutes"));
+const buscaCanciones_grupoRoutes_1 = __importDefault(require("./rutas/buscaCanciones_grupoRoutes"));
+const buscaCancion_AlbumRoutes_1 = __importDefault(require("./rutas/buscaCancion_AlbumRoutes"));
+const buscaIntegrantes_grupoRoutes_1 = __importDefault(require("./rutas/buscaIntegrantes_grupoRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -52,6 +57,14 @@ class Server {
         this.app.use('/app/canciones', cancionesRoutes_1.default);
         /* CANCIONES ALBUM */
         this.app.use('/app/canciones_Album', canciones_albumRoutes_1.default);
+        /* BUSCAR ALBUM GRUPO */
+        this.app.use('/app/buscaAlbum_Grupo', buscaArbum_grupoRoutes_1.default);
+        /* BUSCAR CANCIONES GRUPO */
+        this.app.use('/app/buscaCancion_Grupo', buscaCanciones_grupoRoutes_1.default);
+        /* BUSCAR CANCIONES ALBUM */
+        this.app.use('/app/buscaCancion_Album', buscaCancion_AlbumRoutes_1.default);
+        /* BUSCAR INTEGRANTES GRUPO */
+        this.app.use('/app/buscaIntegrante_Grupo', buscaIntegrantes_grupoRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

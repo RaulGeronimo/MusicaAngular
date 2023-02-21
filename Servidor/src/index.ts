@@ -19,6 +19,12 @@ import cancionesRoutes from './rutas/cancionesRoutes';
 import artista_grupoRoutes from './rutas/artista_grupoRoutes';
 import canciones_albumRoutes from './rutas/canciones_albumRoutes';
 
+/* BUSQUEDA */
+import buscaArbum_grupoRoutes from './rutas/buscaArbum_grupoRoutes';
+import buscaCanciones_grupoRoutes from './rutas/buscaCanciones_grupoRoutes';
+import buscaCancion_AlbumRoutes from './rutas/buscaCancion_AlbumRoutes';
+import buscaIntegrantes_grupoRoutes from './rutas/buscaIntegrantes_grupoRoutes';
+
 class Server {
     public app: Application;
 
@@ -56,6 +62,15 @@ class Server {
         this.app.use('/app/canciones', cancionesRoutes);
         /* CANCIONES ALBUM */
         this.app.use('/app/canciones_Album', canciones_albumRoutes);
+
+        /* BUSCAR ALBUM GRUPO */
+        this.app.use('/app/buscaAlbum_Grupo', buscaArbum_grupoRoutes);
+        /* BUSCAR CANCIONES GRUPO */
+        this.app.use('/app/buscaCancion_Grupo', buscaCanciones_grupoRoutes);
+        /* BUSCAR CANCIONES ALBUM */
+        this.app.use('/app/buscaCancion_Album', buscaCancion_AlbumRoutes);
+        /* BUSCAR INTEGRANTES GRUPO */
+        this.app.use('/app/buscaIntegrante_Grupo', buscaIntegrantes_grupoRoutes);
     }
 
     start(): void{
