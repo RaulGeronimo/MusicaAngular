@@ -1,0 +1,105 @@
+<div class="col-md-5 offset-md-3 inicio">
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Nombre -->
+        <div class="card-body">
+          <input type="text" name="Nombre" [(ngModel)]="artista.Nombre" placeholder="Nombre del Artista:"
+            class="form-control" autofocus required>
+        </div>
+
+        <!-- Nombre Artistico -->
+        <div class="card-body">
+          <input type="text" name="NombreArtistico" [(ngModel)]="artista.NombreArtistico"
+            placeholder="Nombre Artistico:" class="form-control" required>
+        </div>
+
+        <!-- Genero -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="actividad">Genero</label>
+            <select name="Genero" [(ngModel)]="artista.Genero" class="form-control" id="actividad" autofocus>
+              <option selected disabled value="">Selecciona un Genero</option>
+              <option value="H">Hombre</option>
+              <option value="M">Mujer</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Nacimiento -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Fecha de Nacimiento</label>
+            <input type="date" [(ngModel)]="artista.FechaNacimiento" name="FechaNacimiento" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Finado -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Fecha de Finado</label>
+            <input type="date" [(ngModel)]="artista.FechaFinado" name="FechaFinado" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Estatura -->
+        <div class="card-body">
+          <input type="number" name="Estatura" [(ngModel)]="artista.Estatura" placeholder="Estatura:"
+            class="form-control">
+        </div>
+
+        <!-- Nacionalidad -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Nacionalidad</label>
+            <select name="idNacionalidad" [(ngModel)]="artista.idNacionalidad" class="form-control"
+              id="inputGroupSelect02" autofocus>
+              <option selected disabled value="0">Selecciona una Nacionalidad</option>
+              <option *ngFor="let pais of Pais" value="{{pais.idPais}}">{{pais.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Instrumentos -->
+        <div class="card-body">
+          <input type="text" name="Instrumentos" [(ngModel)]="artista.Instrumentos" placeholder="Instrumentos:"
+            class="form-control" required>
+        </div>
+
+        <!-- Tipo de Voz -->
+        <div class="card-body">
+          <input type="text" name="TipoVoz" [(ngModel)]="artista.TipoVoz" placeholder="Tipo de Voz:"
+            class="form-control" required>
+        </div>
+
+        <!-- Foto -->
+        <div class="card-body">
+          <input type="url" name="Foto" [(ngModel)]="artista.Foto" placeholder="Foto:" class="form-control" required>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+          Aceptar
+        </button>
+        <a href="/artista" type="button" class="btn btn-primary">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <img [src]="artista.Foto == '' ? '/assets/noImagen.png' : artista.Foto " class="card-img-top">
+    <h3 style="text-transform: uppercase;">
+      {{artista.idArtista}} - {{artista.Nombre == '' ? 'Nombre del Artista' : artista.Nombre}}
+    </h3>
+    <p>{{artista.NombreArtistico == '' ? 'Nombre Artistico' : artista.NombreArtistico}}</p>
+    <p>{{artista.Genero == '' ? 'Genero' : artista.Genero}}</p>
+    <p>{{artista.FechaNacimiento | date: 'yyyy-MM-dd'}}</p>
+    <p>{{artista.FechaFinado | date: 'yyyy-MM-dd'}}</p>
+    <p>{{artista.Estatura == 0 ? 'Estatura' : artista.Estatura}}</p>
+    <p>{{artista.idNacionalidad == 0 ? 'Pais' : artista.idNacionalidad}}</p>
+    <p>{{artista.Instrumentos == '' ? 'Instrumentos' : artista.Instrumentos}}</p>
+    <p>{{artista.TipoVoz == '' ? 'Tipo de Voz' : artista.TipoVoz}}</p>
+  </div>
+</div>
