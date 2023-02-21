@@ -30,6 +30,9 @@ import { DisqueraFormComponent } from './componentes/disquera-form/disquera-form
 import { AlbumFormComponent } from './componentes/album-form/album-form.component';
 import { AlbumListComponent } from './componentes/album-list/album-list.component';
 
+import { CancionesListComponent } from './componentes/canciones-list/canciones-list.component';
+import { CancionesFormComponent } from './componentes/canciones-form/canciones-form.component';
+
 //Servicios
 import { PaisService } from './servicios/pais.service';
 import { InstrumentosService } from './servicios/instrumentos.service';
@@ -38,6 +41,7 @@ import { ArtistaService } from './servicios/artista.service';
 import { ArtistaGrupoService } from './servicios/artista-grupo.service';
 import { DisqueraService } from './servicios/disquera.service';
 import { AlbumService } from './servicios/album.service';
+import { CancionesService } from './servicios/canciones.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,9 @@ import { AlbumService } from './servicios/album.service';
     DisqueraListComponent,
     DisqueraFormComponent,
     AlbumFormComponent,
-    AlbumListComponent
+    AlbumListComponent,
+    CancionesListComponent,
+    CancionesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,8 @@ import { AlbumService } from './servicios/album.service';
     ArtistaService,
     ArtistaGrupoService,
     DisqueraService,
-    AlbumService
+    AlbumService,
+    CancionesService
   ],
   bootstrap: [AppComponent]
 })
