@@ -1,0 +1,68 @@
+<div class="col-md-5 offset-md-3 inicio">
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Nombre -->
+        <div class="card-body">
+          <input type="text" name="Nombre" [(ngModel)]="disquera.Nombre" placeholder="Nombre de la disquera:"
+            class="form-control" autofocus required>
+        </div>
+
+        <!-- Fundador -->
+        <div class="card-body">
+          <input type="text" name="Fundador" [(ngModel)]="disquera.Fundador" placeholder="Fundadores:"
+            class="form-control" required>
+        </div>
+
+        <!-- Fundacion -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Fecha de Fundacion</label>
+            <input type="date" [(ngModel)]="disquera.Fundacion" name="Fundacion" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Generos -->
+        <div class="card-body">
+          <input type="text" name="Generos" [(ngModel)]="disquera.Generos" placeholder="Generos:" class="form-control"
+            required>
+        </div>
+
+        <!-- Pais -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Pais</label>
+            <select name="idPais" [(ngModel)]="disquera.idPais" class="form-control" id="inputGroupSelect02" autofocus>
+              <option selected disabled value="0">Selecciona un Pais</option>
+              <option *ngFor="let pais of Pais" value="{{pais.idPais}}">{{pais.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Foto -->
+        <div class="card-body">
+          <input type="url" name="Logo" [(ngModel)]="disquera.Logo" placeholder="Foto:" class="form-control" required>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+          Aceptar
+        </button>
+        <a href="/disquera" type="button" class="btn btn-primary">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <img [src]="disquera.Logo == '' ? '/assets/noImagen.png' : disquera.Logo " class="card-img-top">
+    <h3 style="text-transform: uppercase;">
+      {{disquera.idDisquera}} - {{disquera.Nombre == '' ? 'Nombre de la Disquera' : disquera.Nombre}}
+    </h3>
+    <p>{{disquera.Fundador == '' ? 'Fundadores' : disquera.Fundador}}</p>
+    <p>{{disquera.Fundacion | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{disquera.Generos == '' ? 'Generos' : disquera.Generos}}</p>
+    <p>{{disquera.idPais == 0 ? 'Pais' : disquera.idPais}}</p>
+  </div>
+</div>

@@ -1,58 +1,57 @@
 <div class="col-md-5 offset-md-3 inicio">
-    <div class="card">
-      <div class="card-body">
-        <form>
-  
-          <!-- Nombre -->
-          <div class="card-body">
-            <input type="text" name="Nombre" [(ngModel)]="pais.Nombre" placeholder="Nombre del Pais:" class="form-control"
-              autofocus required>
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Nombre -->
+        <div class="card-body">
+          <input type="text" name="Nombre" [(ngModel)]="pais.Nombre" placeholder="Nombre del Pais:" class="form-control"
+            autofocus required>
+        </div>
+
+        <!-- Continente -->
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Continente</label>
+            <select name="Continente" [(ngModel)]="pais.Continente" class="form-select" id="inputGroupSelect01">
+              <option selected disabled value="">Selecciona un Continente</option>
+              <option value="Africa">Africa</option>
+              <option value="America">America</option>
+              <option value="Antartida">Antartida</option>
+              <option value="Asia">Asia</option>
+              <option value="Europa">Europa</option>
+              <option value="Oceania">Oceania</option>
+            </select>
           </div>
-  
-          <!-- Continente -->
-          <div class="card-body">
-            <div class="input-group mb-3">
-              <label class="input-group-text" for="inputGroupSelect01">Continente</label>
-              <select name="Continente" [(ngModel)]="pais.Continente" class="form-select" id="inputGroupSelect01">
-                <option selected disabled value="">Selecciona un Continente</option>
-                <option value="Africa">Africa</option>
-                <option value="America">America</option>
-                <option value="Antartida">Antartida</option>
-                <option value="Asia">Asia</option>
-                <option value="Europa">Europa</option>
-                <option value="Oceania">Oceania</option>
-              </select>
-            </div>
-          </div>
-  
-          <!-- Nacionalidad -->
-          <div class="card-body">
-            <input type="text" name="Nacionalidad" [(ngModel)]="pais.Nacionalidad" placeholder="Nacionalidad del Pais:"
-              class="form-control" required>
-          </div>
-  
-          <!-- Banderea -->
-          <div class="card-body">
-            <input type="url" name="Bandera" [(ngModel)]="pais.Bandera" placeholder="Bandera:" class="form-control"
-              required>
-          </div>
-  
-          <button type="button" class="btn btn-success" (click)="edit ? actualizaPais() : addPais()">
-            Aceptar
-          </button>
-          <a href="/pais" type="button" class="btn btn-primary">Regresar</a>
-        </form>
-      </div>
+        </div>
+
+        <!-- Nacionalidad -->
+        <div class="card-body">
+          <input type="text" name="Nacionalidad" [(ngModel)]="pais.Nacionalidad" placeholder="Nacionalidad del Pais:"
+            class="form-control" required>
+        </div>
+
+        <!-- Banderea -->
+        <div class="card-body">
+          <input type="url" name="Bandera" [(ngModel)]="pais.Bandera" placeholder="Bandera:" class="form-control"
+            required>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualizaPais() : addPais()">
+          Aceptar
+        </button>
+        <a href="/pais" type="button" class="btn btn-primary">Regresar</a>
+      </form>
     </div>
   </div>
-  
-  <div class="col-md-4 inicio">
-    <div class="card card-body text-center">
-      <img [src]="pais.Bandera == '' ? '/assets/noImagen.png' : pais.Bandera " class="card-img-top">
-      <h3 style="text-transform: uppercase;">
-        {{pais.idPais}} - {{pais.Nombre == '' ? 'Nombre del Pais' : pais.Nombre}}</h3>
-      <p>{{pais.Continente == '' ? 'Continente' : pais.Continente}}</p>
-      <p>{{pais.Nacionalidad == '' ? 'Nacionalidad' : pais.Nacionalidad}}</p>
-    </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <img [src]="pais.Bandera == '' ? '/assets/noImagen.png' : pais.Bandera " class="card-img-top">
+    <h3 style="text-transform: uppercase;">
+      {{pais.idPais}} - {{pais.Nombre == '' ? 'Nombre del Pais' : pais.Nombre}}</h3>
+    <p>{{pais.Continente == '' ? 'Continente' : pais.Continente}}</p>
+    <p>{{pais.Nacionalidad == '' ? 'Nacionalidad' : pais.Nacionalidad}}</p>
   </div>
-  
+</div>

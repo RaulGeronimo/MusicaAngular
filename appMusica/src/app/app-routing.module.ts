@@ -9,6 +9,7 @@ import { InstrumentoListComponent } from './componentes/instrumento-list/instrum
 import { GruposListComponent } from './componentes/grupos-list/grupos-list.component';
 import { ArtistaListComponent } from './componentes/artista-list/artista-list.component';
 import { ArtistaGrupoListComponent } from './componentes/artista-grupo-list/artista-grupo-list.component';
+import { DisqueraListComponent } from './componentes/disquera-list/disquera-list.component';
 
 
 //Importamos los Formularios
@@ -17,10 +18,29 @@ import { InstrumentoFormComponent } from './componentes/instrumento-form/instrum
 import { GruposFormComponent } from './componentes/grupos-form/grupos-form.component';
 import { ArtistaFormComponent } from './componentes/artista-form/artista-form.component';
 import { ArtistaGrupoFormComponent } from './componentes/artista-grupo-form/artista-grupo-form.component';
+import { DisqueraFormComponent } from './componentes/disquera-form/disquera-form.component';
 
 
 const routes: Routes = [
   //Creacion de los Objetos
+  /* DISQUERA */
+  {
+    path: '',
+    redirectTo: '/disquera',
+    pathMatch: 'full'
+  },
+  {
+    path: 'disquera', //Se creo la ruta para abrir un componente
+    component: DisqueraListComponent
+  },
+  {
+    path: 'disquera/agregar',
+    component: DisqueraFormComponent,
+  },
+  {
+    path: 'disquera/actualizar/:idDisquera',
+    component: DisqueraFormComponent
+  },
   
   /* ARTISTA GRUPO */
   {

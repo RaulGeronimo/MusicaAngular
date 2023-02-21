@@ -11,8 +11,7 @@
         <i class="far fa-trash-alt"></i>
       </button>
     </div>
-    <img id="imagenArtista" [src]="artista.Foto == '' ? '/assets/noImagen.png' : artista.Foto "
-      alt="Imagen del Artista">
+    <img [src]="artista.Foto == '' ? '/assets/noImagen.png' : artista.Foto " alt="Imagen del Artista">
     <div class="card-body">
       <p style="font-weight: bold;">Fecha Nacimiento</p>
       <p>{{artista.FechaNacimiento}}</p>
@@ -22,11 +21,11 @@
       <p>{{artista.Instrumento}}</p>
       <p style="font-weight: bold;">Tipo Voz</p>
       <p>{{artista.TipoVoz}}</p>
+      <p style="font-weight: bold;">Grupo</p>
+      <p>{{artista.Grupo}}</p>
       <p style="font-weight: bold;">Periodo de Actividad</p>
       <p>{{artista.Periodo}}</p>
-      <a [routerLink]="['/artista_Grupo/actualizar', artista.Codigo]" class="btn btn-info btn-block">
-        Editar Artista
-      </a>
+      <a [routerLink]="['/artista_Grupo/actualizar', artista.Codigo]" class="btn btn-info btn-block">Editar</a>
     </div>
   </div>
 </div>
