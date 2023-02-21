@@ -1,0 +1,90 @@
+<div class="col-md-5 offset-md-3 inicio">
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Nombre -->
+        <div class="card-body">
+          <input type="text" name="Nombre" [(ngModel)]="album.Nombre" placeholder="Nombre del Album:"
+            class="form-control" autofocus required>
+        </div>
+
+        <!-- Grupo -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Grupo</label>
+            <select name="idGrupo" [(ngModel)]="album.idGrupo" class="form-control" id="inputGroupSelect02">
+              <option selected disabled value="0">Selecciona un Grupo</option>
+              <option *ngFor="let grupo of Grupo" value="{{grupo.idGrupo}}">{{grupo.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Disquera -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Disquera</label>
+            <select name="idDisquera" [(ngModel)]="album.idDisquera" class="form-control" id="inputGroupSelect02">
+              <option selected disabled value="0">Selecciona una Disquera</option>
+              <option *ngFor="let disquera of Disquera" value="{{disquera.idDisquera}}">{{disquera.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Duracion -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Duracion</label>
+            <input type="time" [(ngModel)]="album.Duracion" name="Duracion" class="form-control">
+          </div>
+        </div>
+
+        <!-- Lanzamiento -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Fecha de Lanzamiento</label>
+            <input type="date" [(ngModel)]="album.Lanzamiento" name="Lanzamiento" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Grabacion -->
+        <div class="card-body">
+          <input type="text" name="Grabacion" [(ngModel)]="album.Grabacion" placeholder="Grabacion del Album:"
+            class="form-control" required>
+        </div>
+
+        <!-- Genero -->
+        <div class="card-body">
+          <input type="text" name="Genero" [(ngModel)]="album.Genero" placeholder="Genero del Album:"
+            class="form-control" required>
+        </div>
+
+        <!-- Portada -->
+        <div class="card-body">
+          <input type="url" name="Portada" [(ngModel)]="album.Portada" placeholder="Portada:" class="form-control"
+            required>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+          Aceptar
+        </button>
+        <a href="/album" type="button" class="btn btn-primary">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <img [src]="album.Portada == '' ? '/assets/noImagen.png' : album.Portada " class="card-img-top">
+    <h3 style="text-transform: uppercase;">
+      {{album.idAlbum}} - {{album.Nombre == '' ? 'Nombre del Album' : album.Nombre}}
+    </h3>
+    <p>{{album.idGrupo == 0 ? 'Grupo' : album.idGrupo}}</p>
+    <p>{{album.idDisquera == 0 ? 'Disquera' : album.idDisquera}}</p>
+    <p>{{album.Duracion == '' ? 'Duracion' : album.Duracion}}</p>
+    <p>{{album.Lanzamiento | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{album.Grabacion == '' ? 'Grabacion' : album.Grabacion}}</p>
+    <p>{{album.Genero == '' ? 'Genero' : album.Genero}}</p>
+  </div>
+</div>

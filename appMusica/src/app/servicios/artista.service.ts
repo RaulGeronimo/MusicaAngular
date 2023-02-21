@@ -19,10 +19,6 @@ export class ArtistaService {
     return this.http.get(`${this.API_URI}/artista`)
   }
 
-  getNacionalidad(){
-    return this.http.get(`${this.API_URI}/artista`);
-  }
-
   getArtista(idArtista: String){
     return this.http.get(`${this.API_URI}/artista/${idArtista}`);
   }

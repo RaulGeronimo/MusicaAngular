@@ -10,6 +10,7 @@ import { GruposListComponent } from './componentes/grupos-list/grupos-list.compo
 import { ArtistaListComponent } from './componentes/artista-list/artista-list.component';
 import { ArtistaGrupoListComponent } from './componentes/artista-grupo-list/artista-grupo-list.component';
 import { DisqueraListComponent } from './componentes/disquera-list/disquera-list.component';
+import { AlbumListComponent } from './componentes/album-list/album-list.component';
 
 
 //Importamos los Formularios
@@ -19,10 +20,30 @@ import { GruposFormComponent } from './componentes/grupos-form/grupos-form.compo
 import { ArtistaFormComponent } from './componentes/artista-form/artista-form.component';
 import { ArtistaGrupoFormComponent } from './componentes/artista-grupo-form/artista-grupo-form.component';
 import { DisqueraFormComponent } from './componentes/disquera-form/disquera-form.component';
+import { AlbumFormComponent } from './componentes/album-form/album-form.component';
 
 
 const routes: Routes = [
   //Creacion de los Objetos
+  /* ALBUM */
+  {
+    path: '',
+    redirectTo: '/album',
+    pathMatch: 'full'
+  },
+  {
+    path: 'album', //Se creo la ruta para abrir un componente
+    component: AlbumListComponent
+  },
+  {
+    path: 'album/agregar',
+    component: AlbumFormComponent,
+  },
+  {
+    path: 'album/actualizar/:idAlbum',
+    component: AlbumFormComponent
+  },
+
   /* DISQUERA */
   {
     path: '',
@@ -41,7 +62,7 @@ const routes: Routes = [
     path: 'disquera/actualizar/:idDisquera',
     component: DisqueraFormComponent
   },
-  
+
   /* ARTISTA GRUPO */
   {
     path: '',
@@ -60,6 +81,7 @@ const routes: Routes = [
     path: 'artista_Grupo/actualizar/:Codigo',
     component: ArtistaGrupoFormComponent
   },
+
   /* ARTISTA */
   {
     path: '',
@@ -78,6 +100,7 @@ const routes: Routes = [
     path: 'artista/actualizar/:idArtista',
     component: ArtistaFormComponent
   },
+
   /* GRUPOS */
   {
     path: '',
@@ -96,6 +119,7 @@ const routes: Routes = [
     path: 'grupo/actualizar/:idGrupo',
     component: GruposFormComponent
   },
+
   /* INSTRUMENTOS */
   {
     path: '',
@@ -114,6 +138,7 @@ const routes: Routes = [
     path: 'instrumento/actualizar/:idInstrumento',
     component: InstrumentoFormComponent
   },
+
   /* PAIS */
   {
     path: '',
