@@ -1,0 +1,52 @@
+<div class="col-md-5 offset-md-3 inicio">
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Cancion -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Cancion</label>
+            <select name="idCancion" [(ngModel)]="cancionesAlbum.idCancion" class="form-control"
+              id="inputGroupSelect02">
+              <option selected disabled value="0">Selecciona una Cancion</option>
+              <option *ngFor="let Canciones of Canciones" value="{{Canciones.idCancion}}">{{Canciones.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Album -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect02">Album</label>
+            <select name="idAlbum" [(ngModel)]="cancionesAlbum.idAlbum" class="form-control" id="inputGroupSelect02">
+              <option selected disabled value="0">Selecciona un Album</option>
+              <option *ngFor="let Album of Album" value="{{Album.idAlbum}}">{{Album.Nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Numero -->
+        <div class="card-body">
+          <input type="number" name="Numero" [(ngModel)]="cancionesAlbum.Numero" placeholder="Numero:"
+            class="form-control">
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+          Aceptar
+        </button>
+        <a href="/canciones_Album" type="button" class="btn btn-primary">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <h3 style="text-transform: uppercase;">
+      {{cancionesAlbum.Codigo}} - {{cancionesAlbum.idCancion == 0 ? 'Cancion' : cancionesAlbum.idCancion}}
+    </h3>
+    <p>{{cancionesAlbum.idAlbum == 0 ? 'Album' : Album.Nombre}}</p>
+    <p>{{cancionesAlbum.Numero == 0 ? 'Numero' : cancionesAlbum.Numero}}</p>
+  </div>
+</div>
