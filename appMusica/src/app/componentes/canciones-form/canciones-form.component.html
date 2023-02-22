@@ -1,1 +1,59 @@
-<p>canciones-form works!</p>
+<div class="col-md-5 offset-md-3 inicio">
+  <div class="card">
+    <div class="card-body">
+      <form>
+
+        <!-- Nombre -->
+        <div class="card-body">
+          <input type="text" name="Nombre" [(ngModel)]="cancion.Nombre" placeholder="Nombre de la Cancion:"
+            class="form-control" autofocus required>
+        </div>
+
+        <!-- Duracion -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Duracion</label>
+            <input type="time" [(ngModel)]="cancion.Duracion" name="Duracion" class="form-control">
+          </div>
+        </div>
+
+        <!-- Publicacion -->
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Fecha de Publicacion</label>
+            <input type="date" [(ngModel)]="cancion.Publicacion" name="Publicacion" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Genero -->
+        <div class="card-body">
+          <input type="text" name="Genero" [(ngModel)]="cancion.Genero" placeholder="Genero de la Cancion:"
+            class="form-control" required>
+        </div>
+
+        <!-- Idioma -->
+        <div class="card-body">
+          <input type="text" name="Idioma" [(ngModel)]="cancion.Idioma" placeholder="Idioma de la Cancion:"
+            class="form-control" required>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
+          Aceptar
+        </button>
+        <a href="/canciones" type="button" class="btn btn-primary">Regresar</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 inicio">
+  <div class="card card-body text-center">
+    <h3 style="text-transform: uppercase;">
+      {{cancion.idCancion}} - {{cancion.Nombre == '' ? 'Nombre de la Cancion' : cancion.Nombre}}
+    </h3>
+    <p>{{cancion.Duracion == '' ? 'Duracion' : cancion.Duracion}}</p>
+    <p>{{cancion.Publicacion | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{cancion.Genero == '' ? 'Genero' : cancion.Genero}}</p>
+    <p>{{cancion.Idioma == '' ? 'Idioma' : cancion.Idioma}}</p>
+  </div>
+</div>
