@@ -36,6 +36,18 @@ import { CancionesFormComponent } from './componentes/canciones-form/canciones-f
 import { CancionesAlbumFormComponent } from './componentes/canciones-album-form/canciones-album-form.component';
 import { CancionesAlbumListComponent } from './componentes/canciones-album-list/canciones-album-list.component';
 
+/* BUSQUEDA */
+import { BuscaCancionAlbumComponent } from './componentes/busca-cancion-album/busca-cancion-album.component';
+import { BuscaCancionGrupoComponent } from './componentes/busca-cancion-grupo/busca-cancion-grupo.component';
+import { BuscaAlbumGrupoComponent } from './componentes/busca-album-grupo/busca-album-grupo.component';
+import { BuscaIntegrantesGrupoComponent } from './componentes/busca-integrantes-grupo/busca-integrantes-grupo.component';
+
+import { BuscaAlbumGrupoService } from './servicios/busca-album-grupo.service';
+import { BuscaCancionAlbumService } from './servicios/busca-cancion-album.service';
+import { BuscaCancionGrupoService } from './servicios/busca-cancion-grupo.service';
+import { BuscaIntegrantesGrupoService } from './servicios/busca-integrantes-grupo.service';
+
+
 //Servicios
 import { PaisService } from './servicios/pais.service';
 import { InstrumentosService } from './servicios/instrumentos.service';
@@ -46,6 +58,8 @@ import { DisqueraService } from './servicios/disquera.service';
 import { AlbumService } from './servicios/album.service';
 import { CancionesService } from './servicios/canciones.service';
 import { CancionesAlbumService } from './servicios/canciones-album.service';
+
+
 
 @NgModule({
   declarations: [
@@ -68,7 +82,11 @@ import { CancionesAlbumService } from './servicios/canciones-album.service';
     CancionesListComponent,
     CancionesFormComponent,
     CancionesAlbumFormComponent,
-    CancionesAlbumListComponent
+    CancionesAlbumListComponent,
+    BuscaCancionAlbumComponent,
+    BuscaCancionGrupoComponent,
+    BuscaAlbumGrupoComponent,
+    BuscaIntegrantesGrupoComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +103,11 @@ import { CancionesAlbumService } from './servicios/canciones-album.service';
     DisqueraService,
     AlbumService,
     CancionesService,
-    CancionesAlbumService
+    CancionesAlbumService,
+    BuscaAlbumGrupoService,
+    BuscaCancionAlbumService,
+    BuscaCancionGrupoService,
+    BuscaIntegrantesGrupoService
   ],
   bootstrap: [AppComponent]
 })

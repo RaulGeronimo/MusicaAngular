@@ -9,8 +9,6 @@
       <button class="btn btn-danger" (click)="borrar(grupos.idGrupo)">
         <i class="far fa-trash-alt"></i>
       </button>
-      <!-- <a [routerLink]="['/busca_artista_Grupo', grupos.idGrupo]" class="btn btn-success btn-block">
-          <i class="fa-sharp fa-solid fa-magnifying-glass"></i></a> -->
     </div>
     <img [src]="grupos.Logo == '' ? '/assets/noImagen.png' : grupos.Logo " alt="Imagen del Grupo">
     <div class="card-body">
@@ -26,7 +24,22 @@
       <p>{{grupos.Estado}}</p>
       <p style="font-weight: bold;">Sitio Web</p>
       <p><a href="{{grupos.SitioWeb}}" target="_blank">{{grupos.SitioWeb}}</a></p>
-      <a [routerLink]="['/grupo/actualizar', grupos.idGrupo]" class="btn btn-info btn-block">Editar</a>
+
+      <a [routerLink]="['/grupo/actualizar', grupos.idGrupo]" class="btn btn-info btn-block" target="_blank"><i
+          class="fa-solid fa-pen-to-square"></i>
+      </a>
+
+      <a [routerLink]="['/buscaCancion_Grupo', grupos.idGrupo]" class="btn btn-success btn-block" target="_blank">
+        <i class="fa-solid fa-compact-disc"></i>
+      </a>
+
+      <a [routerLink]="['/buscaAlbum_Grupo', grupos.idGrupo]" class="btn btn-warning btn-block" target="_blank">
+        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+      </a>
+
+      <a [routerLink]="['/buscaIntegrante_Grupo', grupos.idGrupo]" class="btn btn-danger btn-block" target="_blank">
+        <i class="fa-solid fa-user"></i>
+      </a>
     </div>
   </div>
 </div>

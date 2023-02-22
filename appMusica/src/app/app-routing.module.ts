@@ -25,6 +25,12 @@ import { AlbumFormComponent } from './componentes/album-form/album-form.componen
 import { CancionesFormComponent } from './componentes/canciones-form/canciones-form.component';
 import { CancionesAlbumFormComponent } from './componentes/canciones-album-form/canciones-album-form.component';
 
+//Busqueda
+import { BuscaCancionAlbumComponent } from './componentes/busca-cancion-album/busca-cancion-album.component';
+import { BuscaAlbumGrupoComponent } from './componentes/busca-album-grupo/busca-album-grupo.component';
+import { BuscaCancionGrupoComponent } from './componentes/busca-cancion-grupo/busca-cancion-grupo.component';
+import { BuscaIntegrantesGrupoComponent } from './componentes/busca-integrantes-grupo/busca-integrantes-grupo.component';
+
 const routes: Routes = [
   //Creacion de los Objetos
   /* GRUPOS */
@@ -196,6 +202,51 @@ const routes: Routes = [
   {
     path: 'pais/actualizar/:idPais',
     component: PaisFormComponent
+  },
+
+  /* ---------------------------------------------------------- BUSQUEDA ---------------------------------------------------------- */
+  /* BUSCA CANCION ALBUM */
+  {
+    path: '',
+    redirectTo: '/buscaCancion_Album',
+    pathMatch: 'full'
+  },
+  {
+    path: 'buscaCancion_Album/:idAlbum',
+    component: BuscaCancionAlbumComponent
+  },
+  
+  /* BUSCA ALBUM GRUPO */
+  {
+    path: '',
+    redirectTo: '/buscaAlbum_Grupo',
+    pathMatch: 'full'
+  },
+  {
+    path: 'buscaAlbum_Grupo/:idGrupo',
+    component: BuscaAlbumGrupoComponent
+  },
+
+  /* BUSCA CANCION GRUPO */
+  {
+    path: '',
+    redirectTo: '/buscaCancion_Grupo',
+    pathMatch: 'full'
+  },
+  {
+    path: 'buscaCancion_Grupo/:idGrupo',
+    component: BuscaCancionGrupoComponent
+  },
+
+  /* BUSCA INTEGRANTE GRUPO */
+  {
+    path: '',
+    redirectTo: '/buscaIntegrante_Grupo',
+    pathMatch: 'full'
+  },
+  {
+    path: 'buscaIntegrante_Grupo/:idGrupo',
+    component: BuscaIntegrantesGrupoComponent
   },
 ];
 
