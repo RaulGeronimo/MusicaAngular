@@ -21,7 +21,7 @@ export class ArtistaGrupoFormComponent implements OnInit {
     idArtista: 0,
     idGrupo: 0,
     FechaInicio: new Date(),
-    FechaFin: new Date(),
+    FechaFin: '',
     idInstrumento: 0,
   };
   edit: boolean = false;

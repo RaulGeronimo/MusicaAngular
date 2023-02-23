@@ -121,7 +121,12 @@ Artista.NombreArtistico,
 IF (Artista.Genero = 'H', 'Hombre', 'Mujer') AS Genero,
 DATE_FORMAT(Artista.FechaNacimiento, "%d / %M / %Y") AS FechaNacimiento,
 DATE_FORMAT(Artista.FechaFinado, "%d / %M / %Y") AS FechaFinado,
-IF (Artista.FechaNacimiento >= Artista.FechaFinado, "Fecha Invalida", TIMESTAMPDIFF(Year, Artista.FechaNacimiento, (IFNULL(Artista.FechaFinado, NOW())))) AS Edad,
+CASE
+WHEN Artista.FechaFinado IS NULL OR Artista.FechaFinado <= 0 THEN CONCAT_WS(' ', TIMESTAMPDIFF(YEAR, Artista.FechaNacimiento, NOW()), 'años')
+WHEN Artista.FechaFinado <= 0 THEN 'Fecha Invalida'
+WHEN Artista.FechaNacimiento <= Artista.FechaFinado THEN CONCAT_WS(' ', TIMESTAMPDIFF(YEAR, Artista.FechaNacimiento, Artista.FechaFinado), 'años')
+ELSE 'Fecha Invalida'
+END AS Edad,
 FORMAT(Artista.Estatura, 2) AS Estatura,
 CONCAT_WS(' - ', Pais.Nombre, Pais.Nacionalidad) AS Pais,
 Artista.Instrumentos,
@@ -149,7 +154,7 @@ Grupo.Idioma,
 Grupo.Logo,
 COUNT(Album.idAlbum) AS Albumes
 FROM Grupo
-left JOIN Album
+LEFT JOIN Album
 ON Album.idGrupo = Grupo.idGrupo
 GROUP BY (Grupo.idGrupo)
 ORDER BY Grupo.Nombre;
@@ -197,7 +202,7 @@ Vista_Disquera AS
 SELECT
 Disquera.idDisquera,
 Disquera.Nombre,
-DATE_FORMAT(Disquera.Fundacion, "%d / %M / %Y") AS Fundacion,
+DATE_FORMAT(Disquera.Fundacion, "%M / %Y") AS Fundacion,
 Disquera.Fundador,
 Disquera.Generos,
 Pais.Nombre AS Pais,
@@ -266,7 +271,7 @@ INNER JOIN Canciones_Album
 ON Canciones.idCancion = Canciones_Album.idCancion
 INNER JOIN Album
 ON Album.idAlbum = Canciones_Album.idAlbum
-ORDER BY Numero;
+ORDER BY Nombre;
 
 /* ----------------------------------------------------------------- CANCIONES GRUPO ----------------------------------------------------------------- */
 CREATE OR REPLACE VIEW

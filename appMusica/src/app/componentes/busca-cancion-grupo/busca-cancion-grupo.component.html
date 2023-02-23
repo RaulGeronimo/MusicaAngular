@@ -1,30 +1,30 @@
 <div class="inicio">
-    <a href="/grupo" type="button" class="btn btn-primary">Regresar</a>
-  </div>
-  <table class="table table-dark table-striped nowrap">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Album</th>
-        <th>Duracion</th>
-        <th>Publicacion</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let Canciones of Canciones">
-        <th>{{Canciones.Nombre}}</th>
-        <td>{{Canciones.Album}}</td>
-        <td>{{Canciones.Duracion}}</td>
-        <td>{{Canciones.Publicacion}}</td>
-        <td>
-          <button class="btn btn-danger" (click)="borrar(Canciones.Codigo)">
-            <i class="far fa-trash-alt"></i>
-          </button>
-          <a [routerLink]="['/canciones_Album/actualizar', Canciones.idCancion]" class="btn btn-info btn-block"><i
-              class="fa-solid fa-pen-to-square"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <a type="button" class="btn btn-success" href="/canciones/agregar">Agregar</a>
+  <a href="/grupo" type="button" class="btn btn-primary">Regresar</a>
+</div>
+<table class="table table-dark table-striped nowrap">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Album</th>
+      <th>Duracion</th>
+      <th>Publicacion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Canciones of Canciones">
+      <th>{{Canciones.Nombre}}</th>
+      <td>{{Canciones.Album}}</td>
+      <td>{{Canciones.Duracion}}</td>
+      <td>{{Canciones.Publicacion}}</td>
+      <td>
+        <a [routerLink]="['/canciones_Album/actualizar', Canciones.idCancion]" class="btn btn-info btn-block"><i
+            class="fa-solid fa-pen-to-square"></i></a>
+        <button class="btn btn-danger" (click)="borrar(Canciones.Codigo)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

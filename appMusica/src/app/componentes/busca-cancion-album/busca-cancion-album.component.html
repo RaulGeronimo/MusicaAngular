@@ -1,4 +1,5 @@
 <div class="inicio">
+  <a type="button" class="btn btn-success" href="/canciones_Album/agregar">Agregar</a>
   <a href="/album" type="button" class="btn btn-primary">Regresar</a>
 </div>
 <table class="table table-dark table-striped nowrap">
@@ -18,11 +19,11 @@
       <td>{{Canciones.Duracion}}</td>
       <td>{{Canciones.Publicacion}}</td>
       <td>
+        <a [routerLink]="['/canciones_Album/actualizar', Canciones.idCancion]" class="btn btn-info btn-block"><i
+            class="fa-solid fa-pen-to-square"></i></a>
         <button class="btn btn-danger" (click)="borrar(Canciones.Codigo)">
           <i class="far fa-trash-alt"></i>
         </button>
-        <a [routerLink]="['/canciones_Album/actualizar', Canciones.idCancion]" class="btn btn-info btn-block"><i
-            class="fa-solid fa-pen-to-square"></i></a>
       </td>
     </tr>
   </tbody>

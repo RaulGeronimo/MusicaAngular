@@ -18,7 +18,7 @@ export class GruposFormComponent implements OnInit {
     Origen: '',
     Genero: '',
     Inicio: new Date(),
-    Fin: new Date(),
+    Fin: '',
     Sellos: '',
     Estado: '',
     SitioWeb: '',

@@ -13,16 +13,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let canciones of Canciones">
-      <th>{{canciones.Nombre}}</th>
+      <td>{{canciones.Nombre}}</td>
       <td>{{canciones.Duracion}}</td>
       <td>{{canciones.Publicacion}}</td>
       <td>{{canciones.Genero}}</td>
       <td>
+        <a [routerLink]="['/canciones/actualizar', canciones.idCancion]" class="btn btn-info btn-block"><i
+            class="fa-solid fa-pen-to-square"></i></a>
         <button class="btn btn-danger" (click)="borrar(canciones.idCancion)">
           <i class="far fa-trash-alt"></i>
         </button>
-        <a [routerLink]="['/canciones/actualizar', canciones.idCancion]" class="btn btn-info btn-block"><i
-            class="fa-solid fa-pen-to-square"></i></a>
+
       </td>
     </tr>
   </tbody>

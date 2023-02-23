@@ -11,3 +11,12 @@ body {
   margin-block-start: 60px;
   margin-block-end: 10px;
 }
+
+.botones {
+  float: right;
+}
+
+.botones button,
+a {
+  margin-right: 4px;
+}

@@ -4,10 +4,6 @@ img {
   max-height: 370px;
 }
 
-.botones {
-  float: right;
-}
-
 @media (max-width: 1400px) and (min-width: 380px) {
   img {
     width: 100%;

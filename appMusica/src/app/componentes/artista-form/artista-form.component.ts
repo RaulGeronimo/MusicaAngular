@@ -19,7 +19,7 @@ export class ArtistaFormComponent implements OnInit {
     NombreArtistico: '',
     Genero: '',
     FechaNacimiento: new Date(),
-    FechaFinado: new Date(),
+    FechaFinado: '',
     Estatura: 0,
     idNacionalidad: 0,
     Instrumentos: '',

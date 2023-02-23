@@ -4,6 +4,6 @@ export interface Artista_Grupo{
     idArtista?: number;
     idGrupo?: number;
     FechaInicio?: Date;
-    FechaFin?: Date;
+    FechaFin?: string;
     idInstrumento?: number;
 }
