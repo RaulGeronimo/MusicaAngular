@@ -1,9 +1,9 @@
 //Se crea la interfaz
 export interface Artista_Grupo{
     Codigo?: number;
-    idArtista?: number;
-    idGrupo?: number;
-    FechaInicio?: Date;
+    idArtista?: string;
+    idGrupo?: string;
+    FechaInicio?: string;
     FechaFin?: string;
-    idInstrumento?: number;
+    idInstrumento?: string;
 }

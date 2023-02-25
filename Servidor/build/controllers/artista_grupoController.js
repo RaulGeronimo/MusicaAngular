@@ -43,7 +43,7 @@ class Artista_grupoController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { Codigo } = req.params;
-            const album = yield database_1.default.query('SELECT * FROM Artista_Grupo WHERE Codigo = ?', [Codigo]);
+            const album = yield database_1.default.query('SELECT *, DATE_FORMAT(FechaInicio, \'%Y-%m-%d\') AS FechaInicio FROM Artista_Grupo WHERE Codigo = ?', [Codigo]);
             if (album.length > 0) {
                 return res.json(album[0]);
             }

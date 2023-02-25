@@ -26,7 +26,7 @@ class Artista_grupoController{
 
     public async buscar(req: Request, res: Response){
         const { Codigo } = req.params;
-        const album = await pool.query('SELECT * FROM Artista_Grupo WHERE Codigo = ?', [Codigo]);
+        const album = await pool.query('SELECT *, DATE_FORMAT(FechaInicio, \'%Y-%m-%d\') AS FechaInicio FROM Artista_Grupo WHERE Codigo = ?', [Codigo]);
         if(album.length > 0){
             return res.json(album[0]);
         }
