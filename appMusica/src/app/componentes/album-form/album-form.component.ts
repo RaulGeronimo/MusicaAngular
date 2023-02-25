@@ -19,11 +19,11 @@ export class AlbumFormComponent implements OnInit {
 
   album: Album = {
     idAlbum: 0,
-    idGrupo: 0,
-    idDisquera: 0,
+    idGrupo: '',
+    idDisquera: '',
     Nombre: '',
     Duracion: '',
-    Lanzamiento: new Date(),
+    Lanzamiento: '',
     Grabacion: '',
     Genero: '',
     Portada: ''

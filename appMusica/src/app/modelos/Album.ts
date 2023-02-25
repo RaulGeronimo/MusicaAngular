@@ -1,11 +1,11 @@
 //Se crea la interfaz
 export interface Album{
     idAlbum?: number;
-    idGrupo?: number;
-    idDisquera?: number;
+    idGrupo?: string;
+    idDisquera?: string;
     Nombre?: string;
     Duracion?: string;
-    Lanzamiento?: Date;
+    Lanzamiento?: string;
     Grabacion?: string;
     Genero?: string;
     Portada?: string;

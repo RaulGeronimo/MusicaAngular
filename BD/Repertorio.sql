@@ -40,7 +40,7 @@ CREATE TABLE Grupo(
     Nombre VARCHAR(50),
     Origen VARCHAR(200),
     Genero VARCHAR(200),
-    Inicio VARCHAR(50), /* DATE */
+    Inicio DATE,
     Fin VARCHAR(50), /* DATE */
     Sellos VARCHAR(150),
     Estado VARCHAR(50),
