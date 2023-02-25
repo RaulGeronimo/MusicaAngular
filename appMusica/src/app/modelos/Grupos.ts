@@ -4,7 +4,7 @@ export interface Grupos{
     Nombre?: string;
     Origen?: string;
     Genero?: string;
-    Inicio?: Date;
+    Inicio?: string;
     Fin?: string;
     Sellos?: string;
     Estado?: string;

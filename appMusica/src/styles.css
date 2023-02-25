@@ -24,3 +24,7 @@ a {
 form button{
   margin-right: 4px;
 }
+
+span strong{
+  color: brown;
+}

@@ -47,7 +47,6 @@ import { BuscaCancionAlbumService } from './servicios/busca-cancion-album.servic
 import { BuscaCancionGrupoService } from './servicios/busca-cancion-grupo.service';
 import { BuscaIntegrantesGrupoService } from './servicios/busca-integrantes-grupo.service';
 
-
 //Servicios
 import { PaisService } from './servicios/pais.service';
 import { InstrumentosService } from './servicios/instrumentos.service';
@@ -59,7 +58,7 @@ import { AlbumService } from './servicios/album.service';
 import { CancionesService } from './servicios/canciones.service';
 import { CancionesAlbumService } from './servicios/canciones-album.service';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -92,7 +91,8 @@ import { CancionesAlbumService } from './servicios/canciones-album.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     PaisService,

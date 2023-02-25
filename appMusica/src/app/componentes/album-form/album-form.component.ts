@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 /* ENTIDAD */
 import { Album } from 'src/app/modelos/Album';
@@ -13,6 +14,7 @@ import { DisqueraService } from 'src/app/servicios/disquera.service';
   styleUrls: ['./album-form.component.css']
 })
 export class AlbumFormComponent implements OnInit {
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   album: Album = {
@@ -31,8 +33,20 @@ export class AlbumFormComponent implements OnInit {
   Grupo: any = [];
   Disquera: any = [];
 
-  constructor(private Service: AlbumService, private GruposService:GruposService, private DisqueraService:DisqueraService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private Service: AlbumService, private GruposService:GruposService, 
+    private DisqueraService:DisqueraService, private router: Router, 
+    private activatedRoute: ActivatedRoute, private fb: FormBuilder) { 
+      this.form = this.fb.group({
+        idGrupo: ['', Validators.required],
+        idDisquera: ['', Validators.required],
+        Nombre: ['', Validators.required],
+        Duracion: ['', Validators.required],
+        Lanzamiento: ['', Validators.required],
+        Grabacion: ['', Validators.required],
+        Genero: ['', Validators.required],
+        Portada: ['', Validators.required]
+      })
+    }
 
   ngOnInit(): void {
     this.obtenerDisquera();

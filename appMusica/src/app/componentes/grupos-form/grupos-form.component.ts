@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 /* ENTIDAD */
 import { Grupos } from 'src/app/modelos/Grupos';
@@ -10,6 +11,8 @@ import { GruposService } from 'src/app/servicios/grupos.service';
   styleUrls: ['./grupos-form.component.css']
 })
 export class GruposFormComponent implements OnInit {
+  form: FormGroup;
+
   @HostBinding('class') classes = 'row';
 
   grupo: Grupos = {
@@ -17,7 +20,7 @@ export class GruposFormComponent implements OnInit {
     Nombre: '',
     Origen: '',
     Genero: '',
-    Inicio: new Date(),
+    Inicio: '',
     Fin: '',
     Sellos: '',
     Estado: '',
@@ -29,7 +32,21 @@ export class GruposFormComponent implements OnInit {
   edit: boolean = false;
 
   constructor(private Service: GruposService, private router: Router, 
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute, private fb: FormBuilder) { 
+      
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Origen: ['', Validators.required],
+        Genero: ['', Validators.required],
+        Inicio: ['', Validators.required],
+        Fin: [],
+        Sellos: ['', Validators.required],
+        Estado: ['', Validators.required],
+        SitioWeb: ['', Validators.required],
+        Idioma: ['', Validators.required],
+        Logo: ['', Validators.required]
+      })
+    }
 
     ngOnInit(): void {
       const params = this.activatedRoute.snapshot.params;
