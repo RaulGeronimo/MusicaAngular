@@ -72,7 +72,8 @@
         <div class="card-body">
           <input type="url" formControlName="SitioWeb" [(ngModel)]="grupo.SitioWeb" placeholder="Sitio Web:"
             class="form-control">
-          <span *ngIf="form.get('SitioWeb')?.hasError('required') && form.get('SitioWeb')?.touched">El campo SITIO WEB es
+          <span *ngIf="form.get('SitioWeb')?.hasError('required') && form.get('SitioWeb')?.touched">El campo SITIO WEB
+            es
             <strong>Requerido</strong></span>
         </div>
 
@@ -111,10 +112,8 @@
     </h3>
     <p>{{grupo.Origen == '' ? 'Origen' : grupo.Origen}}</p>
     <p>{{grupo.Genero == '' ? 'Genero' : grupo.Genero}}</p>
-    <!-- <p>{{grupo.Inicio | date: 'dd / MMMM / yyyy'}}</p>
-      <p>{{grupo.Fin | date: 'dd / MMMM / yyyy'}}</p> -->
-    <p>{{grupo.Inicio | date: 'dd / MMMM / yyyy'}}</p>
-    <p>{{grupo.Fin | date: 'dd / MMMM / yyyy'}}</p>
+    <p>{{grupo.Inicio == ''? 'Inicio' : (grupo.Inicio | date: 'dd / MMMM / yyyy')}}</p>
+    <p>{{grupo.Fin == ''? 'Fin' : (grupo.Fin | date: 'dd / MMMM / yyyy')}}</p>
     <p>{{grupo.Sellos == '' ? 'Sellos Discograficos' : grupo.Sellos}}</p>
     <p>{{grupo.Estado == '' ? 'Estado del Grupo' : grupo.Estado}}</p>
     <p><a href="{{grupo.SitioWeb}}" target="_blank">{{grupo.SitioWeb == '' ? 'Sitio Web' : grupo.SitioWeb}}</a></p>

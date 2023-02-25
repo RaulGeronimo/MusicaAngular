@@ -43,7 +43,7 @@ class CancionesController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCancion } = req.params;
-            const canciones = yield database_1.default.query('SELECT * FROM Canciones WHERE idCancion = ?', [idCancion]);
+            const canciones = yield database_1.default.query('SELECT *, DATE_FORMAT(Publicacion, \'%Y-%m-%d\') AS Publicacion FROM Canciones WHERE idCancion = ?', [idCancion]);
             if (canciones.length > 0) {
                 return res.json(canciones[0]);
             }

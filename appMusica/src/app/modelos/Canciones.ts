@@ -3,7 +3,7 @@ export interface Cancion{
     idCancion?: number;
     Nombre?: string;
     Duracion?: string;
-    Publicacion?: Date;
+    Publicacion?: string;
     Genero?: string;
     Idioma?: string;
 }

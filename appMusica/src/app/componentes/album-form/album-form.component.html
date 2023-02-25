@@ -8,7 +8,8 @@
           <input type="text" formControlName="Nombre" [(ngModel)]="album.Nombre" placeholder="Nombre del Album:"
             class="form-control" autofocus>
 
-          <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Grupo -->
@@ -21,7 +22,8 @@
             </select>
           </div>
 
-          <span *ngIf="form.get('idGrupo')?.hasError('required') && form.get('idGrupo')?.touched">El campo GRUPO es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('idGrupo')?.hasError('required') && form.get('idGrupo')?.touched">El campo GRUPO es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Disquera -->
@@ -35,7 +37,8 @@
             </select>
           </div>
 
-          <span *ngIf="form.get('idDisquera')?.hasError('required') && form.get('idDisquera')?.touched">El campo DISQUERA es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('idDisquera')?.hasError('required') && form.get('idDisquera')?.touched">El campo
+            DISQUERA es <strong>Requerido</strong></span>
         </div>
 
         <!-- Duracion -->
@@ -45,7 +48,8 @@
             <input type="time" step="2" [(ngModel)]="album.Duracion" formControlName="Duracion" class="form-control">
           </div>
 
-          <span *ngIf="form.get('Duracion')?.hasError('required') && form.get('Duracion')?.touched">El campo DURACION es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Duracion')?.hasError('required') && form.get('Duracion')?.touched">El campo DURACION es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Lanzamiento -->
@@ -55,7 +59,8 @@
             <input type="date" [(ngModel)]="album.Lanzamiento" formControlName="Lanzamiento" class="form-control" />
           </div>
 
-          <span *ngIf="form.get('Lanzamiento')?.hasError('required') && form.get('Lanzamiento')?.touched">El campo LANZAMIENTO es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Lanzamiento')?.hasError('required') && form.get('Lanzamiento')?.touched">El campo
+            LANZAMIENTO es <strong>Requerido</strong></span>
         </div>
 
         <!-- Grabacion -->
@@ -63,7 +68,8 @@
           <input type="text" formControlName="Grabacion" [(ngModel)]="album.Grabacion"
             placeholder="Grabacion del Album:" class="form-control">
 
-          <span *ngIf="form.get('Grabacion')?.hasError('required') && form.get('Grabacion')?.touched">El campo GRABACION es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Grabacion')?.hasError('required') && form.get('Grabacion')?.touched">El campo GRABACION
+            es <strong>Requerido</strong></span>
         </div>
 
         <!-- Genero -->
@@ -71,7 +77,8 @@
           <input type="text" formControlName="Genero" [(ngModel)]="album.Genero" placeholder="Genero del Album:"
             class="form-control">
 
-          <span *ngIf="form.get('Genero')?.hasError('required') && form.get('Genero')?.touched">El campo GENERO es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Genero')?.hasError('required') && form.get('Genero')?.touched">El campo GENERO es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Portada -->
@@ -79,7 +86,8 @@
           <input type="url" formControlName="Portada" [(ngModel)]="album.Portada" placeholder="Portada:"
             class="form-control">
 
-          <span *ngIf="form.get('Portada')?.hasError('required') && form.get('Portada')?.touched">El campo PORTADA es <strong>Requerido</strong></span>
+          <span *ngIf="form.get('Portada')?.hasError('required') && form.get('Portada')?.touched">El campo PORTADA es
+            <strong>Requerido</strong></span>
         </div>
 
         <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
@@ -101,7 +109,8 @@
     <p>{{album.idGrupo == '' ? 'Grupo' : album.idGrupo}}</p>
     <p>{{album.idDisquera == '' ? 'Disquera' : album.idDisquera}}</p>
     <p>{{album.Duracion == '' ? 'Duracion' : album.Duracion}}</p>
-    <p>{{album.Lanzamiento | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{album.Lanzamiento == ''? 'Lanzamiento' : (album.Lanzamiento | date: 'dd / MMMM / yyyy')}}</p>
+    <!-- <p>{{album.Lanzamiento | date: 'dd-MMMM-yyyy'}}</p> -->
     <p>{{album.Grabacion == '' ? 'Grabacion' : album.Grabacion}}</p>
     <p>{{album.Genero == '' ? 'Genero' : album.Genero}}</p>
   </div>

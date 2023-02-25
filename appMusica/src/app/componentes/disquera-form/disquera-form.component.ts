@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 /* ENTIDAD */
 import { Disquera } from 'src/app/modelos/Disquera';
@@ -12,22 +13,33 @@ import { PaisService } from 'src/app/servicios/pais.service';
   styleUrls: ['./disquera-form.component.css']
 })
 export class DisqueraFormComponent implements OnInit {
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   disquera: Disquera = {
     idDisquera: 0,
     Nombre: '',
-    Fundacion: new Date(),
+    Fundacion: '',
     Fundador: '',
     Generos: '',
-    idPais: 0,
+    idPais: '',
     Logo: ''
   };
   Pais: any = [];
   edit: boolean = false;
 
   constructor(private Service: DisqueraService, private paisService: PaisService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder) {
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Fundacion: ['', Validators.required],
+        Fundador: ['', Validators.required],
+        Generos: ['', Validators.required],
+        idPais: ['', Validators.required],
+        Logo: ['', Validators.required]
+      })
+     }
 
   ngOnInit(): void {
     this.obtenerPais();

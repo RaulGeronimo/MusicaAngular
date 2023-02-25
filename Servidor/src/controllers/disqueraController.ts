@@ -26,7 +26,7 @@ class DisqueraController{
 
     public async buscar(req: Request, res: Response){
         const { idDisquera } = req.params;
-        const disquera = await pool.query('SELECT * FROM Disquera WHERE idDisquera = ?', [idDisquera]);
+        const disquera = await pool.query('SELECT *, DATE_FORMAT(Fundacion, \'%Y-%m-%d\') AS Fundacion FROM Disquera WHERE idDisquera = ?', [idDisquera]);
         if(disquera.length > 0){
             return res.json(disquera[0]);
         }

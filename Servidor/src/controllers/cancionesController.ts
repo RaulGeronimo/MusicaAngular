@@ -26,7 +26,7 @@ class CancionesController{
 
     public async buscar(req: Request, res: Response){
         const { idCancion } = req.params;
-        const canciones = await pool.query('SELECT * FROM Canciones WHERE idCancion = ?', [idCancion]);
+        const canciones = await pool.query('SELECT *, DATE_FORMAT(Publicacion, \'%Y-%m-%d\') AS Publicacion FROM Canciones WHERE idCancion = ?', [idCancion]);
         if(canciones.length > 0){
             return res.json(canciones[0]);
         }

@@ -1,5 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
+/* ENTIDAD */
 import { Instrumentos } from 'src/app/modelos/Instrumentos'; 
 import { InstrumentosService } from 'src/app/servicios/instrumentos.service';
 
@@ -9,7 +11,7 @@ import { InstrumentosService } from 'src/app/servicios/instrumentos.service';
   styleUrls: ['./instrumento-form.component.css']
 })
 export class InstrumentoFormComponent implements OnInit {
-
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   instrumentos: Instrumentos = {
@@ -21,7 +23,15 @@ export class InstrumentoFormComponent implements OnInit {
 
   edit: boolean = false;
 
-  constructor(private instrumentosService: InstrumentosService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private instrumentosService: InstrumentosService, 
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder) {
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Descripcion: ['', Validators.required],
+        Foto: ['', Validators.required]
+      })
+     }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;

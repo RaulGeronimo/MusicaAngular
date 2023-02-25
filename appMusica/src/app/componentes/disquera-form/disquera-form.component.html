@@ -1,54 +1,74 @@
 <div class="col-md-5 offset-md-3 inicio">
   <div class="card">
     <div class="card-body">
-      <form>
+      <form [formGroup]="form" (ngSubmit)="edit ? actualiza() : add()">
 
         <!-- Nombre -->
         <div class="card-body">
-          <input type="text" name="Nombre" [(ngModel)]="disquera.Nombre" placeholder="Nombre de la disquera:"
-            class="form-control" autofocus required>
+          <input type="text" formControlName="Nombre" [(ngModel)]="disquera.Nombre" placeholder="Nombre de la disquera:"
+            class="form-control" autofocus>
+
+          <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Fundador -->
         <div class="card-body">
-          <input type="text" name="Fundador" [(ngModel)]="disquera.Fundador" placeholder="Fundadores:"
-            class="form-control" required>
+          <input type="text" formControlName="Fundador" [(ngModel)]="disquera.Fundador" placeholder="Fundadores:"
+            class="form-control">
+
+          <span *ngIf="form.get('Fundador')?.hasError('required') && form.get('Fundador')?.touched">El campo FUNDADOR es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Fundacion -->
         <div class="card-body">
           <div class="input-group">
             <label class="input-group-text">Fecha de Fundacion</label>
-            <input type="date" [(ngModel)]="disquera.Fundacion" name="Fundacion" class="form-control" />
+            <input type="date" [(ngModel)]="disquera.Fundacion" formControlName="Fundacion" class="form-control" />
           </div>
+
+          <span *ngIf="form.get('Fundacion')?.hasError('required') && form.get('Fundacion')?.touched">El campo FUNDACION
+            es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Generos -->
         <div class="card-body">
-          <input type="text" name="Generos" [(ngModel)]="disquera.Generos" placeholder="Generos:" class="form-control"
-            required>
+          <input type="text" formControlName="Generos" [(ngModel)]="disquera.Generos" placeholder="Generos:"
+            class="form-control">
+
+          <span *ngIf="form.get('Generos')?.hasError('required') && form.get('Generos')?.touched">El campo GENEROS es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Pais -->
         <div class="card-body">
           <div class="input-group">
             <label class="input-group-text" for="inputGroupSelect02">Pais</label>
-            <select name="idPais" [(ngModel)]="disquera.idPais" class="form-control" id="inputGroupSelect02" autofocus>
-              <option selected disabled value="0">Selecciona un Pais</option>
+            <select formControlName="idPais" [(ngModel)]="disquera.idPais" class="form-control" id="inputGroupSelect02">
+              <option selected disabled value="">Selecciona un Pais</option>
               <option *ngFor="let pais of Pais" value="{{pais.idPais}}">{{pais.Nombre}}</option>
             </select>
           </div>
+
+          <span *ngIf="form.get('idPais')?.hasError('required') && form.get('idPais')?.touched">El campo PAIS es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Foto -->
         <div class="card-body">
-          <input type="url" name="Logo" [(ngModel)]="disquera.Logo" placeholder="Foto:" class="form-control" required>
+          <input type="url" formControlName="Logo" [(ngModel)]="disquera.Logo" placeholder="Foto:" class="form-control">
+
+          <span *ngIf="form.get('Logo')?.hasError('required') && form.get('Logo')?.touched">El campo LOGO es
+            <strong>Requerido</strong></span>
         </div>
 
-        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
-          Aceptar
-        </button>
-        <a href="/disquera" type="button" class="btn btn-primary">Regresar</a>
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
+        <button routerLink="/disquera" type="button" class="btn btn-primary">Regresar</button>
+
+        <!-- <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">Aceptar</button>
+        <a href="/disquera" type="button" class="btn btn-primary">Regresar</a> -->
       </form>
     </div>
   </div>
@@ -61,8 +81,8 @@
       {{disquera.idDisquera}} - {{disquera.Nombre == '' ? 'Nombre de la Disquera' : disquera.Nombre}}
     </h3>
     <p>{{disquera.Fundador == '' ? 'Fundadores' : disquera.Fundador}}</p>
-    <p>{{disquera.Fundacion | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{disquera.Fundacion == ''? 'Fundacion' : (disquera.Fundacion | date: 'dd / MMMM / yyyy')}}</p>
     <p>{{disquera.Generos == '' ? 'Generos' : disquera.Generos}}</p>
-    <p>{{disquera.idPais == 0 ? 'Pais' : disquera.idPais}}</p>
+    <p>{{disquera.idPais == '' ? 'Pais' : disquera.idPais}}</p>
   </div>
 </div>

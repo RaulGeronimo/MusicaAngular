@@ -43,7 +43,7 @@ class DisqueraController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idDisquera } = req.params;
-            const disquera = yield database_1.default.query('SELECT * FROM Disquera WHERE idDisquera = ?', [idDisquera]);
+            const disquera = yield database_1.default.query('SELECT *, DATE_FORMAT(Fundacion, \'%Y-%m-%d\') AS Fundacion FROM Disquera WHERE idDisquera = ?', [idDisquera]);
             if (disquera.length > 0) {
                 return res.json(disquera[0]);
             }

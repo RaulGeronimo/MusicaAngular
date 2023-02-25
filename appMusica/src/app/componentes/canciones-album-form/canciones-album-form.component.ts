@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 /* ENTIDAD */
 import { CancionesAlbum } from 'src/app/modelos/CancionesAlbum';
@@ -13,12 +14,13 @@ import { AlbumService } from 'src/app/servicios/album.service';
   styleUrls: ['./canciones-album-form.component.css']
 })
 export class CancionesAlbumFormComponent implements OnInit {
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   cancionesAlbum: CancionesAlbum = {
     Codigo: 0,
-    idAlbum: 0,
-    idCancion: 0,
+    idAlbum: '',
+    idCancion: '',
     Numero: 0,
   };
 
@@ -28,8 +30,16 @@ export class CancionesAlbumFormComponent implements OnInit {
   Canciones: any = [];
   Album: any = [];
 
-  constructor(private Service: CancionesAlbumService, private CancionesService: CancionesService, private AlbumService: AlbumService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private Service: CancionesAlbumService, 
+    private CancionesService: CancionesService, private AlbumService: AlbumService,
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder) { 
+      this.form = this.fb.group({
+        idAlbum: ['', Validators.required],
+        idCancion: ['', Validators.required],
+        Numero: [null, Validators.required],
+      })
+    }
 
   ngOnInit(): void {
     this.obtenerCancion();

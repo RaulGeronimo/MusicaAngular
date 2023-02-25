@@ -1,46 +1,63 @@
 <div class="col-md-5 offset-md-3 inicio">
   <div class="card">
     <div class="card-body">
-      <form>
+      <form [formGroup]="form" (ngSubmit)="edit ? actualiza() : add()">
 
         <!-- Nombre -->
         <div class="card-body">
-          <input type="text" name="Nombre" [(ngModel)]="cancion.Nombre" placeholder="Nombre de la Cancion:"
-            class="form-control" autofocus required>
+          <input type="text" formControlName="Nombre" [(ngModel)]="cancion.Nombre" placeholder="Nombre de la Cancion:"
+            class="form-control" autofocus>
+
+          <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Duracion -->
         <div class="card-body">
           <div class="input-group">
             <label class="input-group-text">Duracion</label>
-            <input type="time" step="2" [(ngModel)]="cancion.Duracion" name="Duracion" class="form-control">
+            <input type="time" step="2" [(ngModel)]="cancion.Duracion" formControlName="Duracion" class="form-control">
           </div>
+
+          <span *ngIf="form.get('Duracion')?.hasError('required') && form.get('Duracion')?.touched">El campo DURACION es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Publicacion -->
         <div class="card-body">
           <div class="input-group">
             <label class="input-group-text">Fecha de Publicacion</label>
-            <input type="date" [(ngModel)]="cancion.Publicacion" name="Publicacion" class="form-control" />
+            <input type="date" [(ngModel)]="cancion.Publicacion" formControlName="Publicacion" class="form-control" />
           </div>
+
+          <span *ngIf="form.get('Publicacion')?.hasError('required') && form.get('Publicacion')?.touched">El campo
+            PUBLICACION es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Genero -->
         <div class="card-body">
-          <input type="text" name="Genero" [(ngModel)]="cancion.Genero" placeholder="Genero de la Cancion:"
-            class="form-control" required>
+          <input type="text" formControlName="Genero" [(ngModel)]="cancion.Genero" placeholder="Genero de la Cancion:"
+            class="form-control">
+
+          <span *ngIf="form.get('Genero')?.hasError('required') && form.get('Genero')?.touched">El campo GENERO es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Idioma -->
         <div class="card-body">
-          <input type="text" name="Idioma" [(ngModel)]="cancion.Idioma" placeholder="Idioma de la Cancion:"
-            class="form-control" required>
+          <input type="text" formControlName="Idioma" [(ngModel)]="cancion.Idioma" placeholder="Idioma de la Cancion:"
+            class="form-control">
+
+          <span *ngIf="form.get('Idioma')?.hasError('required') && form.get('Idioma')?.touched">El campo IDIOMA es
+            <strong>Requerido</strong></span>
         </div>
 
-        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
-          Aceptar
-        </button>
-        <a href="/canciones" type="button" class="btn btn-primary">Regresar</a>
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
+        <button routerLink="/canciones" type="button" class="btn btn-primary">Regresar</button>
+
+        <!-- <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">Aceptar</button>
+        <a href="/canciones" type="button" class="btn btn-primary">Regresar</a> -->
       </form>
     </div>
   </div>
@@ -52,7 +69,7 @@
       {{cancion.idCancion}} - {{cancion.Nombre == '' ? 'Nombre de la Cancion' : cancion.Nombre}}
     </h3>
     <p>{{cancion.Duracion == '' ? 'Duracion' : cancion.Duracion}}</p>
-    <p>{{cancion.Publicacion | date: 'dd-MMMM-yyyy'}}</p>
+    <p>{{cancion.Publicacion == ''? 'Publicacion' : (cancion.Publicacion | date: 'dd / MMMM / yyyy')}}</p>
     <p>{{cancion.Genero == '' ? 'Genero' : cancion.Genero}}</p>
     <p>{{cancion.Idioma == '' ? 'Idioma' : cancion.Idioma}}</p>
   </div>

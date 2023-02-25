@@ -24,7 +24,7 @@ CREATE TABLE Artista(
     Nombre VARCHAR(70),
     NombreArtistico VARCHAR(50),
     Genero CHAR,
-    FechaNacimiento VARCHAR(50), /* DATE */
+    FechaNacimiento DATE,
     FechaFinado VARCHAR(50), /* DATE */
     Estatura DOUBLE,
     idNacionalidad INT,
@@ -54,7 +54,7 @@ CREATE TABLE Artista_Grupo(
     Codigo INT PRIMARY KEY AUTO_INCREMENT,
     idArtista INT,
     idGrupo INT,
-    FechaInicio VARCHAR(50), /* DATE */
+    FechaInicio DATE,
     FechaFin VARCHAR(50), /* DATE */
     idInstrumento INT,
     FOREIGN KEY (idArtista) REFERENCES Artista(idArtista) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -66,7 +66,7 @@ ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 CREATE TABLE Disquera(
     idDisquera INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(60),
-    Fundacion VARCHAR(50), /* DATE */
+    Fundacion DATE,
     Fundador VARCHAR(100),
     Generos VARCHAR(100),
     idPais INT,
@@ -81,7 +81,7 @@ CREATE TABLE Album(
     idDisquera INT,
     Nombre VARCHAR(60),
     Duracion TIME,
-    Lanzamiento VARCHAR(50), /* DATE */
+    Lanzamiento DATE,
     Grabacion VARCHAR(200),
     Genero VARCHAR(100),
     Portada TEXT,
@@ -94,7 +94,7 @@ CREATE TABLE Canciones(
     idCancion INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(70),
     Duracion TIME,
-    Publicacion VARCHAR(50), /* DATE */
+    Publicacion DATE,
     Genero VARCHAR(100),
     Idioma VARCHAR(50)
 )
@@ -170,7 +170,14 @@ Artista.NombreArtistico,
 IF (Artista.Genero = 'H', 'Hombre', 'Mujer') AS Genero,
 DATE_FORMAT(Artista.FechaNacimiento, "%d / %M / %Y") AS FechaNacimiento,
 DATE_FORMAT(Artista.FechaFinado, "%d / %M / %Y") AS FechaFinado,
-IF (Artista.FechaNacimiento >= Artista.FechaFinado, "Fecha Invalida", TIMESTAMPDIFF(Year, Artista.FechaNacimiento, (IFNULL(Artista.FechaFinado, NOW())))) AS Edad,
+
+CASE
+WHEN Artista.FechaFinado IS NULL OR Artista.FechaFinado <= 0 THEN CONCAT_WS(' ', TIMESTAMPDIFF(YEAR, Artista.FechaNacimiento, NOW()), 'años')
+WHEN Artista.FechaFinado <= 0 THEN 'Fecha Invalida'
+WHEN Artista.FechaNacimiento <= Artista.FechaFinado THEN CONCAT_WS(' ', TIMESTAMPDIFF(YEAR, Artista.FechaNacimiento, Artista.FechaFinado), 'años')
+ELSE 'Fecha Invalida'
+END AS Edad,
+
 FORMAT(Artista.Estatura, 2) AS Estatura,
 CONCAT_WS(' - ', Pais.Nombre, Pais.Nacionalidad) AS Pais,
 Instrumento.Nombre AS Instrumento,
@@ -178,7 +185,12 @@ Artista.TipoVoz,
 Artista.Foto,
 DATE_FORMAT(Artista_Grupo.FechaInicio, "%d / %M / %Y") AS FechaInicio,
 DATE_FORMAT(Artista_Grupo.FechaFin, "%d / %M / %Y") AS FechaFin,
-concat_ws(' - ', YEAR(Artista_Grupo.FechaInicio), IF(Artista_Grupo.FechaFin IS NULL, "Actualidad",YEAR(Artista_Grupo.FechaFin))) AS Periodo,
+
+CASE
+WHEN Artista_Grupo.FechaFin IS NULL OR Artista_Grupo.FechaFin <= 0 THEN CONCAT_WS(' - ', YEAR(Artista_Grupo.FechaInicio), 'Actualidad')
+ELSE CONCAT_WS(' - ', YEAR(Artista_Grupo.FechaInicio), YEAR(Artista_Grupo.FechaFin))
+END AS Periodo,
+
 Grupo.idGrupo,
 Grupo.Nombre AS Grupo
 FROM Artista
@@ -319,7 +331,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `obtener_cancionesAlbum`(IN idAlbumA INT)
 BEGIN
-SELECT * FROM Vista_CancionesAlbum WHERE idAlbum = idAlbumA;
+SELECT * FROM Vista_CancionesAlbum WHERE idAlbum = idAlbumA ORDER BY Numero;
 END$$
 
 DELIMITER ;

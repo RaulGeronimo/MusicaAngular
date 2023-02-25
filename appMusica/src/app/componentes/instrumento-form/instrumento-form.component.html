@@ -1,30 +1,40 @@
 <div class="col-md-5 offset-md-3 inicio">
   <div class="card">
     <div class="card-body">
-      <form>
+      <form [formGroup]="form" (ngSubmit)="edit ? actualiza() : add()">
 
         <!-- Nombre -->
         <div class="card-body">
-          <input type="text" name="Nombre" [(ngModel)]="instrumentos.Nombre" placeholder="Nombre del Pais:"
-            class="form-control" autofocus required>
+          <input type="text" formControlName="Nombre" [(ngModel)]="instrumentos.Nombre" placeholder="Nombre del Pais:"
+            class="form-control" autofocus>
+
+          <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es
+            <strong>Requerido</strong></span>
         </div>
 
         <!-- Descripcion -->
         <div class="card-body">
-          <textarea name="Descripcion" [(ngModel)]="instrumentos.Descripcion" placeholder="Descripcion del Instrumento:"
-            rows="4" class="form-control" required></textarea>
+          <textarea formControlName="Descripcion" [(ngModel)]="instrumentos.Descripcion"
+            placeholder="Descripcion del Instrumento:" rows="4" class="form-control"></textarea>
+
+          <span *ngIf="form.get('Descripcion')?.hasError('required') && form.get('Descripcion')?.touched">El campo
+            DESCRIPCION es <strong>Requerido</strong></span>
         </div>
 
         <!-- Foto -->
         <div class="card-body">
-          <input type="url" name="Foto" [(ngModel)]="instrumentos.Foto" placeholder="Foto:" class="form-control"
-            required>
+          <input type="url" formControlName="Foto" [(ngModel)]="instrumentos.Foto" placeholder="Foto:"
+            class="form-control">
+
+          <span *ngIf="form.get('Foto')?.hasError('required') && form.get('Foto')?.touched">El campo FOTO es
+            <strong>Requerido</strong></span>
         </div>
 
-        <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">
-          Aceptar
-        </button>
-        <a href="/instrumento" type="button" class="btn btn-primary">Regresar</a>
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
+        <button routerLink="/instrumento" type="button" class="btn btn-primary">Regresar</button>
+
+        <!-- <button type="button" class="btn btn-success" (click)="edit ? actualiza() : add()">Aceptar</button>
+        <a href="/instrumento" type="button" class="btn btn-primary">Regresar</a> -->
       </form>
     </div>
   </div>

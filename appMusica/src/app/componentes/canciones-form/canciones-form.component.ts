@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 /* ENTIDAD */
 import { Cancion } from 'src/app/modelos/Canciones';
@@ -10,21 +11,30 @@ import { CancionesService } from 'src/app/servicios/canciones.service';
   styleUrls: ['./canciones-form.component.css']
 })
 export class CancionesFormComponent implements OnInit {
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   cancion: Cancion = {
     idCancion: 0,
     Nombre: '',
     Duracion: '',
-    Publicacion: new Date,
+    Publicacion: '',
     Genero: '',
     Idioma: ''
   };
 
   edit: boolean = false;
 
-  constructor(private Service: CancionesService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private Service: CancionesService, private router: Router, 
+    private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Duracion: ['', Validators.required],
+        Publicacion: ['', Validators.required],
+        Genero: ['', Validators.required],
+        Idioma: ['', Validators.required],
+      })
+     }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;

@@ -1,7 +1,9 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
+/* ENTIDAD */
 import { Pais } from 'src/app/modelos/Pais';
 import { PaisService } from 'src/app/servicios/pais.service';
-import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
 
 @Component({
   selector: 'app-pais-form',
@@ -9,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ru
   styleUrls: ['./pais-form.component.css']
 })
 export class PaisFormComponent implements OnInit  {
-
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   pais: Pais = {
@@ -22,7 +24,15 @@ export class PaisFormComponent implements OnInit  {
 
   edit: boolean = false;
 
-  constructor(private paisService: PaisService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private paisService: PaisService, private router: Router, 
+    private activatedRoute: ActivatedRoute, private fb: FormBuilder) { 
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Nacionalidad: ['', Validators.required],
+        Continente: ['', Validators.required],
+        Bandera: ['', Validators.required]
+      })
+    }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -38,7 +48,7 @@ export class PaisFormComponent implements OnInit  {
     }
   }
 
-  addPais(){
+  add(){
     this.paisService.createPais(this.pais).subscribe(
       res => {
         //Llenamos el arreglo con la respuesta
@@ -49,7 +59,7 @@ export class PaisFormComponent implements OnInit  {
     );
   }
 
-  actualizaPais(){
+  actualiza(){
     const params = this.activatedRoute.snapshot.params;
     this.paisService.updatePais(params['idPais'], this.pais).subscribe(
       res => {

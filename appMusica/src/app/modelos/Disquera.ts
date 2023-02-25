@@ -2,9 +2,9 @@
 export interface Disquera{
     idDisquera?: number;
     Nombre?: string;
-    Fundacion?: Date;
+    Fundacion?: string;
     Fundador?: string;
     Generos?: string;
-    idPais?: number;
+    idPais?: string;
     Logo?: string;
 }
