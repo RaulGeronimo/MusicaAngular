@@ -4,10 +4,10 @@ export interface Artista{
     Nombre?: string;
     NombreArtistico?: string;
     Genero?: string;
-    FechaNacimiento?: Date;
+    FechaNacimiento?: string;
     FechaFinado?: string;
     Estatura?: number;
-    idNacionalidad?: number;
+    idNacionalidad?: string;
     Instrumentos?: string;
     TipoVoz?: string;
     Foto?: string;

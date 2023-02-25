@@ -43,7 +43,7 @@ class ArtistaController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idArtista } = req.params;
-            const album = yield database_1.default.query('SELECT * FROM Artista WHERE idArtista = ?', [idArtista]);
+            const album = yield database_1.default.query('SELECT *, DATE_FORMAT(FechaNacimiento, \'%Y-%m-%d\') AS FechaNacimiento FROM Artista WHERE idArtista = ?', [idArtista]);
             if (album.length > 0) {
                 return res.json(album[0]);
             }

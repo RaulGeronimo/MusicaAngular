@@ -1,5 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
+/* ENTIDAD */
 import { Artista } from 'src/app/modelos/Artista';
 import { ArtistaService } from 'src/app/servicios/artista.service';
 //Llave Foranea
@@ -11,6 +13,7 @@ import { PaisService } from 'src/app/servicios/pais.service';
   styleUrls: ['./artista-form.component.css']
 })
 export class ArtistaFormComponent implements OnInit {
+  form: FormGroup;
   @HostBinding('class') classes = 'row';
 
   artista: Artista = {
@@ -18,10 +21,10 @@ export class ArtistaFormComponent implements OnInit {
     Nombre: '',
     NombreArtistico: '',
     Genero: '',
-    FechaNacimiento: new Date(),
+    FechaNacimiento: '',
     FechaFinado: '',
     Estatura: 0,
-    idNacionalidad: 0,
+    idNacionalidad: '',
     Instrumentos: '',
     TipoVoz: '',
     Foto: ''
@@ -30,7 +33,21 @@ export class ArtistaFormComponent implements OnInit {
   edit: boolean = false;
 
   constructor(private Service: ArtistaService, private paisService: PaisService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder) { 
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        NombreArtistico: ['', Validators.required],
+        Genero: ['', Validators.required],
+        FechaNacimiento: ['', Validators.required],
+        FechaFinado: [],
+        Estatura: [null, Validators.required],
+        idNacionalidad: ['', Validators.required],
+        Instrumentos: ['', Validators.required],
+        TipoVoz: ['', Validators.required],
+        Foto: ['', Validators.required]
+      })
+    }
 
   ngOnInit(): void {
     this.obtenerPais();
