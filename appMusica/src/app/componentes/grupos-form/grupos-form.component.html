@@ -7,6 +7,7 @@
         <div class="card-body">
           <input type="text" formControlName="Nombre" [(ngModel)]="grupo.Nombre" placeholder="Nombre del Grupo:"
             class="form-control" autofocus>
+
           <span *ngIf="form.get('Nombre')?.hasError('required') && form.get('Nombre')?.touched">El campo NOMBRE es
             <strong>Requerido</strong></span>
         </div>
@@ -15,14 +16,16 @@
         <div class="card-body">
           <input type="text" formControlName="Origen" [(ngModel)]="grupo.Origen" placeholder="Origen del Grupo:"
             class="form-control">
+
           <span *ngIf="form.get('Origen')?.hasError('required') && form.get('Origen')?.touched">El campo ORIGEN es
             <strong>Requerido</strong></span>
         </div>
 
         <!-- Genero -->
         <div class="card-body">
-          <input type="text" formControlName="Genero" [(ngModel)]="grupo.Genero" placeholder="Genero del Grupo:"
-            class="form-control">
+          <textarea formControlName="Genero" [(ngModel)]="grupo.Genero" placeholder="Genero del Grupo:" rows="2"
+            class="form-control"></textarea>
+
           <span *ngIf="form.get('Genero')?.hasError('required') && form.get('Genero')?.touched">El campo GENERO es
             <strong>Requerido</strong></span>
         </div>
@@ -33,6 +36,7 @@
             <label class="input-group-text">Inicio del Grupo</label>
             <input type="date" [(ngModel)]="grupo.Inicio" formControlName="Inicio" class="form-control" />
           </div>
+
           <span *ngIf="form.get('Inicio')?.hasError('required') && form.get('Inicio')?.touched">El campo INICIO es
             <strong>Requerido</strong></span>
         </div>
@@ -47,8 +51,9 @@
 
         <!-- Sellos -->
         <div class="card-body">
-          <input type="text" formControlName="Sellos" [(ngModel)]="grupo.Sellos" placeholder="Sellos discograficos:"
-            class="form-control">
+          <textarea formControlName="Sellos" [(ngModel)]="grupo.Sellos" placeholder="Sellos discograficos:" rows="2"
+            class="form-control"></textarea>
+
           <span *ngIf="form.get('Sellos')?.hasError('required') && form.get('Sellos')?.touched">El campo SELLOS es
             <strong>Requerido</strong></span>
         </div>
@@ -64,6 +69,7 @@
               <option value="En hiato">En hiato</option>
             </select>
           </div>
+
           <span *ngIf="form.get('Estado')?.hasError('required') && form.get('Estado')?.touched">El campo ESTADO es
             <strong>Requerido</strong></span>
         </div>
@@ -72,6 +78,7 @@
         <div class="card-body">
           <input type="url" formControlName="SitioWeb" [(ngModel)]="grupo.SitioWeb" placeholder="Sitio Web:"
             class="form-control">
+
           <span *ngIf="form.get('SitioWeb')?.hasError('required') && form.get('SitioWeb')?.touched">El campo SITIO WEB
             es
             <strong>Requerido</strong></span>
@@ -79,8 +86,20 @@
 
         <!-- Idioma -->
         <div class="card-body">
-          <input type="text" formControlName="Idioma" [(ngModel)]="grupo.Idioma" placeholder="Idioma del Grupo:"
-            class="form-control">
+          <div class="input-group">
+            <label class="input-group-text" for="idioma">Idioma</label>
+            <select formControlName="Idioma" [(ngModel)]="grupo.Idioma" class="form-control" id="idioma">
+              <option selected disabled value="">Selecciona el Idioma</option>
+              <option value="Aleman">Alemán</option>
+              <option value="Coreano">Coreano</option>
+              <option value="Español">Español</option>
+              <option value="Frances">Francés</option>
+              <option value="Ingles">Inglés</option>
+              <option value="Italiano">Italiano</option>
+              <option value="Latin">Latín</option>
+            </select>
+          </div>
+
           <span *ngIf="form.get('Idioma')?.hasError('required') && form.get('Idioma')?.touched">El campo IDIOMA es
             <strong>Requerido</strong></span>
         </div>
@@ -88,6 +107,7 @@
         <!-- Logo -->
         <div class="card-body">
           <input type="url" formControlName="Logo" [(ngModel)]="grupo.Logo" placeholder="Logo:" class="form-control">
+
           <span *ngIf="form.get('Logo')?.hasError('required') && form.get('Logo')?.touched">El campo LOGO es
             <strong>Requerido</strong></span>
         </div>

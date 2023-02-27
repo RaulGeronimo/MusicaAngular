@@ -35,8 +35,8 @@
 
         <!-- Generos -->
         <div class="card-body">
-          <input type="text" formControlName="Generos" [(ngModel)]="disquera.Generos" placeholder="Generos:"
-            class="form-control">
+          <textarea formControlName="Generos" [(ngModel)]="disquera.Generos" placeholder="Generos:" rows="2"
+            class="form-control"></textarea>
 
           <span *ngIf="form.get('Generos')?.hasError('required') && form.get('Generos')?.touched">El campo GENEROS es
             <strong>Requerido</strong></span>
