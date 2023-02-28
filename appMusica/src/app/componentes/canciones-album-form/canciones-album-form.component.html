@@ -10,7 +10,7 @@
             <select formControlName="idCancion" [(ngModel)]="cancionesAlbum.idCancion" class="form-control"
               id="inputGroupSelect02">
               <option selected disabled value="">Selecciona una Cancion</option>
-              <option *ngFor="let Canciones of Canciones" value="{{Canciones.idCancion}}">{{Canciones.Nombre}}</option>
+              <option *ngFor="let Canciones of Canciones" value="{{Canciones.idCancion}}">{{Canciones.Cancion}}</option>
             </select>
           </div>
 
@@ -25,7 +25,7 @@
             <select formControlName="idAlbum" [(ngModel)]="cancionesAlbum.idAlbum" class="form-control"
               id="inputGroupSelect02">
               <option selected disabled value="">Selecciona un Album</option>
-              <option *ngFor="let Album of Album" value="{{Album.idAlbum}}">{{Album.Nombre}}</option>
+              <option *ngFor="let Album of Album" value="{{Album.idAlbum}}">{{Album.Album}}</option>
             </select>
           </div>
 
@@ -57,7 +57,7 @@
     <h3 style="text-transform: uppercase;">
       {{cancionesAlbum.Codigo}} - {{cancionesAlbum.idCancion == '' ? 'Cancion' : cancionesAlbum.idCancion}}
     </h3>
-    <p>{{cancionesAlbum.idAlbum == '' ? 'Album' : Album.Nombre}}</p>
+    <p>{{cancionesAlbum.idAlbum == '' ? 'Album' : cancionesAlbum.idAlbum}}</p>
     <p>{{cancionesAlbum.Numero == 0 ? 'Numero' : cancionesAlbum.Numero}}</p>
   </div>
 </div>

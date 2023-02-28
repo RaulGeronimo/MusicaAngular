@@ -82,8 +82,8 @@
 
         <!-- Instrumentos -->
         <div class="card-body">
-          <input type="text" formControlName="Instrumentos" [(ngModel)]="artista.Instrumentos"
-            placeholder="Instrumentos:" class="form-control">
+          <textarea formControlName="Instrumentos" [(ngModel)]="artista.Instrumentos" placeholder="Instrumentos:"
+            rows="2" class="form-control"></textarea>
 
           <span *ngIf="form.get('Instrumentos')?.hasError('required') && form.get('Instrumentos')?.touched">El campo
             INSTRUMENTOS es <strong>Requerido</strong></span>

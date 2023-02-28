@@ -37,8 +37,8 @@
 
         <!-- Genero -->
         <div class="card-body">
-          <input type="text" formControlName="Genero" [(ngModel)]="cancion.Genero" placeholder="Genero de la Cancion:"
-            class="form-control">
+          <textarea formControlName="Genero" [(ngModel)]="cancion.Genero" placeholder="Genero de la Cancion:" rows="2"
+            class="form-control"></textarea>
 
           <span *ngIf="form.get('Genero')?.hasError('required') && form.get('Genero')?.touched">El campo GENERO es
             <strong>Requerido</strong></span>
@@ -46,8 +46,19 @@
 
         <!-- Idioma -->
         <div class="card-body">
-          <input type="text" formControlName="Idioma" [(ngModel)]="cancion.Idioma" placeholder="Idioma de la Cancion:"
-            class="form-control">
+          <div class="input-group">
+            <label class="input-group-text" for="idioma">Idioma</label>
+            <select formControlName="Idioma" [(ngModel)]="cancion.Idioma" class="form-control" id="idioma">
+              <option selected disabled value="">Selecciona el Idioma</option>
+              <option value="Aleman">Alemán</option>
+              <option value="Coreano">Coreano</option>
+              <option value="Español">Español</option>
+              <option value="Frances">Francés</option>
+              <option value="Ingles">Inglés</option>
+              <option value="Italiano">Italiano</option>
+              <option value="Latin">Latín</option>
+            </select>
+          </div>
 
           <span *ngIf="form.get('Idioma')?.hasError('required') && form.get('Idioma')?.touched">El campo IDIOMA es
             <strong>Requerido</strong></span>
