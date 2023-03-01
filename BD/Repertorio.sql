@@ -221,7 +221,8 @@ Pais.Nombre AS Pais,
 Disquera.Logo
 FROM Disquera
 INNER JOIN Pais
-ON Disquera.idPais = Pais.idPais;
+ON Disquera.idPais = Pais.idPais
+ORDER BY Nombre;
 
 /* ---------------------------------------------------------------------- ALBUM ---------------------------------------------------------------------- */
 CREATE OR REPLACE VIEW
@@ -232,9 +233,12 @@ Album.idGrupo,
 Grupo.Nombre AS Grupo,
 Disquera.Nombre AS Disquera,
 Album.Nombre AS Nombre,
+CONCAT_WS(' - ', Album.Nombre, Grupo.Nombre) AS Album,
+/*CONCAT(Album.Nombre, ' - ', Grupo.Nombre, ' (', YEAR(Album.Lanzamiento), ')') AS Album,*/
 COUNT(Canciones_Album.idCancion) AS Canciones,
 IF(DATE_FORMAT(Album.Duracion, "%H") = '00', DATE_FORMAT(Album.Duracion, "%i:%s"), DATE_FORMAT(Album.Duracion, "%H:%i:%s")) AS Duracion,
 DATE_FORMAT(Album.Lanzamiento, "%d / %M / %Y") AS Lanzamiento,
+Album.Lanzamiento AS FechaLanzamiento,
 Album.Grabacion,
 Album.Genero,
 Album.Portada
@@ -249,7 +253,7 @@ LEFT JOIN Canciones_Album
 ON Album.idAlbum = Canciones_Album.idAlbum
 
 GROUP BY(Album.idAlbum)
-ORDER BY (Album.Lanzamiento);
+ORDER BY (Album.Nombre);
 
 /* -------------------------------------------------------------------- CANCIONES -------------------------------------------------------------------- */
 CREATE OR REPLACE VIEW
@@ -259,6 +263,7 @@ idCancion,
 Nombre,
 DATE_FORMAT(Duracion, "%i:%s") AS Duracion,
 DATE_FORMAT(Publicacion, "%d / %M / %Y") AS Publicacion,
+CONCAT_WS(' - ', Nombre, YEAR(Publicacion)) AS Cancion,
 Genero,
 Idioma
 FROM Canciones
@@ -322,7 +327,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `obtener_album`(IN idGrupoB INT)
 BEGIN
-SELECT * FROM Vista_Album WHERE idGrupo = idGrupoB;
+SELECT * FROM Vista_Album WHERE idGrupo = idGrupoB ORDER BY FechaLanzamiento;
 END$$
 
 DELIMITER ;

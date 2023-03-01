@@ -20,7 +20,7 @@
       <td>{{Canciones.Duracion}}</td>
       <td>{{Canciones.Publicacion}}</td>
       <td>
-        <a [routerLink]="['/canciones_Album/actualizar', Canciones.idCancion]" class="btn btn-info btn-block"><i
+        <a [routerLink]="['/canciones_Album/actualizar', Canciones.Codigo]" class="btn btn-info btn-block"><i
             class="fa-solid fa-pen-to-square"></i></a>
         <button class="btn btn-danger" (click)="borrar(Canciones.Codigo)">
           <i class="far fa-trash-alt"></i>

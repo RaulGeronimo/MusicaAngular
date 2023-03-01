@@ -8,7 +8,7 @@
           <div class="input-group">
             <label class="input-group-text" for="inputGroupSelect02">Cancion</label>
             <select formControlName="idCancion" [(ngModel)]="cancionesAlbum.idCancion" class="form-control"
-              id="inputGroupSelect02">
+              id="inputGroupSelect02" autofocus>
               <option selected disabled value="">Selecciona una Cancion</option>
               <option *ngFor="let Canciones of Canciones" value="{{Canciones.idCancion}}">{{Canciones.Cancion}}</option>
             </select>
