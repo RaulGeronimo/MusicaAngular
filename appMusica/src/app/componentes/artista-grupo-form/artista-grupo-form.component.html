@@ -10,7 +10,7 @@
             <select formControlName="idArtista" [(ngModel)]="artista_Grupo.idArtista" class="form-control"
               id="inputGroupSelect02" autofocus>
               <option selected disabled value="">Selecciona un Artista</option>
-              <option *ngFor="let artista of Artista" value="{{artista.idArtista}}">{{artista.Nombre}}</option>
+              <option *ngFor="let artista of Artista" value="{{artista.idArtista}}">{{artista.NombreArtistico}}</option>
             </select>
           </div>
 
