@@ -145,8 +145,11 @@ Grupo.idGrupo,
 Grupo.Nombre,
 Grupo.Origen,
 Grupo.Genero,
-DATE_FORMAT(Grupo.Inicio, "%d / %M / %Y") AS Inicio,
-DATE_FORMAT(Grupo.Fin, "%d / %M / %Y") AS Fin,
+DATE_FORMAT(Grupo.Inicio, "%d / %M / %Y") AS FechaInicio,
+DATE_FORMAT(Grupo.Fin, "%d / %M / %Y") AS FechaFin,
+
+DATE_FORMAT(Inicio, '%Y-%m-%d') AS Inicio,
+Grupo.Fin AS Fin,
 Grupo.Sellos,
 Grupo.Estado,
 Grupo.SitioWeb,
@@ -230,15 +233,16 @@ Vista_Album AS
 SELECT
 Album.idAlbum,
 Album.idGrupo,
+Album.idDisquera,
 Grupo.Nombre AS Grupo,
 Disquera.Nombre AS Disquera,
 Album.Nombre AS Nombre,
 CONCAT_WS(' - ', Album.Nombre, Grupo.Nombre) AS Album,
-/*CONCAT(Album.Nombre, ' - ', Grupo.Nombre, ' (', YEAR(Album.Lanzamiento), ')') AS Album,*/
 COUNT(Canciones_Album.idCancion) AS Canciones,
-IF(DATE_FORMAT(Album.Duracion, "%H") = '00', DATE_FORMAT(Album.Duracion, "%i:%s"), DATE_FORMAT(Album.Duracion, "%H:%i:%s")) AS Duracion,
-DATE_FORMAT(Album.Lanzamiento, "%d / %M / %Y") AS Lanzamiento,
-Album.Lanzamiento AS FechaLanzamiento,
+IF(DATE_FORMAT(Album.Duracion, "%H") = '00', DATE_FORMAT(Album.Duracion, "%i:%s"), DATE_FORMAT(Album.Duracion, "%H:%i:%s")) AS DuracionF,
+Album.Duracion AS Duracion,
+DATE_FORMAT(Album.Lanzamiento, "%Y-%m-%d") AS Lanzamiento,
+DATE_FORMAT(Album.Lanzamiento, "%d / %M / %Y") AS FechaLanzamiento,
 Album.Grabacion,
 Album.Genero,
 Album.Portada
@@ -327,7 +331,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `obtener_album`(IN idGrupoB INT)
 BEGIN
-SELECT * FROM Vista_Album WHERE idGrupo = idGrupoB ORDER BY FechaLanzamiento;
+SELECT * FROM Vista_Album WHERE idGrupo = idGrupoB ORDER BY Lanzamiento;
 END$$
 
 DELIMITER ;
