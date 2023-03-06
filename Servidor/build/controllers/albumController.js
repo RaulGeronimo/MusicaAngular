@@ -43,7 +43,8 @@ class AlbumController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idAlbum } = req.params;
-            const album = yield database_1.default.query('SELECT *, DATE_FORMAT(Lanzamiento, \'%Y-%m-%d\') AS Lanzamiento FROM Album WHERE idAlbum = ?', [idAlbum]);
+            const album = yield database_1.default.query('SELECT * FROM Vista_Album WHERE idAlbum = ?', [idAlbum]);
+            /* const album = await pool.query('SELECT *, DATE_FORMAT(Lanzamiento, \'%Y-%m-%d\') AS Lanzamiento FROM Album WHERE idAlbum = ?', [idAlbum]); */
             if (album.length > 0) {
                 return res.json(album[0]);
             }

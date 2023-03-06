@@ -26,7 +26,7 @@ class GrupoController{
 
     public async buscar(req: Request, res: Response){
         const { idGrupo } = req.params;
-        const grupo = await pool.query('SELECT *, DATE_FORMAT(Inicio, \'%Y-%m-%d\') AS Inicio FROM Grupo WHERE idGrupo = ?', [idGrupo]);
+        const grupo = await pool.query('SELECT * FROM Vista_Grupo WHERE idGrupo = ?', [idGrupo]);
         if(grupo.length > 0){
             return res.json(grupo[0]);
         }

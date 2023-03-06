@@ -12,6 +12,10 @@ body {
   margin-block-end: 10px;
 }
 
+.margen{
+  margin-bottom: 1.5rem;
+}
+
 .botones {
   float: right;
 }
@@ -32,11 +36,15 @@ span strong {
 /* TABLA */
 table {
   width: 100%;
-  background: #000000;
+  background: #303030;
   margin-bottom: 1.25em;
   border: solid 1px #dddddd;
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+table thead{
+  background-color: #000000;
 }
 
 table tr th,
@@ -55,7 +63,7 @@ table th {
 table tr.even,
 table tr.alt,
 table tr:nth-of-type(even) {
-  background: #303030;
+  background: #000000;
 }
 
 @media only screen and (max-width: 768px) {

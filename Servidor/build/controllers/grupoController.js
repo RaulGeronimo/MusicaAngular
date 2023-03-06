@@ -43,7 +43,7 @@ class GrupoController {
     buscar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idGrupo } = req.params;
-            const grupo = yield database_1.default.query('SELECT *, DATE_FORMAT(Inicio, \'%Y-%m-%d\') AS Inicio FROM Grupo WHERE idGrupo = ?', [idGrupo]);
+            const grupo = yield database_1.default.query('SELECT * FROM Vista_Grupo WHERE idGrupo = ?', [idGrupo]);
             if (grupo.length > 0) {
                 return res.json(grupo[0]);
             }

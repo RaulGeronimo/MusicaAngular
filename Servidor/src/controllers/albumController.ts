@@ -26,7 +26,8 @@ class AlbumController{
 
     public async buscar(req: Request, res: Response){
         const { idAlbum } = req.params;
-        const album = await pool.query('SELECT *, DATE_FORMAT(Lanzamiento, \'%Y-%m-%d\') AS Lanzamiento FROM Album WHERE idAlbum = ?', [idAlbum]);
+        const album = await pool.query('SELECT * FROM Vista_Album WHERE idAlbum = ?', [idAlbum]);
+        /* const album = await pool.query('SELECT *, DATE_FORMAT(Lanzamiento, \'%Y-%m-%d\') AS Lanzamiento FROM Album WHERE idAlbum = ?', [idAlbum]); */
         if(album.length > 0){
             return res.json(album[0]);
         }
