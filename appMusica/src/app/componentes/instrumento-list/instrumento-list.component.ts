@@ -1,11 +1,13 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 //Importamos el archivo de Instrumentos.service.ts
 import { InstrumentosService } from 'src/app/servicios/instrumentos.service';
+/* ALERTAS */
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-instrumento-list',
   templateUrl: './instrumento-list.component.html',
-  styleUrls: ['./instrumento-list.component.css']
+  styleUrls: ['./instrumento-list.component.css'],
 })
 export class InstrumentoListComponent implements OnInit {
   //Se importa el HostBinding
@@ -13,30 +15,37 @@ export class InstrumentoListComponent implements OnInit {
   //Creamos el arreglo vacio llamado paises
   instrumentos: any = [];
 
-  constructor(private instrumentosService: InstrumentosService) { }
+  constructor(
+    private instrumentosService: InstrumentosService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerInstrumentos();
   }
 
-  obtenerInstrumentos(){
+  obtenerInstrumentos() {
     this.instrumentosService.getInstrumentos().subscribe(
-      res => {
+      (res) => {
         //Llena el arreglo con la respuesta que enviamos
         this.instrumentos = res;
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  borrarInstrumento(idInstrumento: string){
+  borrarInstrumento(idInstrumento: string) {
     this.instrumentosService.deleteInstrumento(idInstrumento).subscribe(
-      res => {
+      (res) => {
         //Llena el arreglo con la respuesta que enviamos
         console.log(res);
         this.obtenerInstrumentos();
+        this.toastr.warning(
+          'El instrumento fue eliminado con éxito',
+          'Instrumento eliminado'
+        );
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 }

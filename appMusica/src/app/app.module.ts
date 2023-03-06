@@ -47,7 +47,7 @@ import { BuscaCancionAlbumService } from './servicios/busca-cancion-album.servic
 import { BuscaCancionGrupoService } from './servicios/busca-cancion-grupo.service';
 import { BuscaIntegrantesGrupoService } from './servicios/busca-integrantes-grupo.service';
 
-//Servicios
+/* Servicios */
 import { PaisService } from './servicios/pais.service';
 import { InstrumentosService } from './servicios/instrumentos.service';
 import { GruposService } from './servicios/grupos.service';
@@ -59,6 +59,8 @@ import { CancionesService } from './servicios/canciones.service';
 import { CancionesAlbumService } from './servicios/canciones-album.service';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     PaisService,

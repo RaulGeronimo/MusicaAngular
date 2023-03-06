@@ -1,14 +1,15 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
+import { ActivatedRoute } from '@angular/router'; //Para enviar a una ruta Especifica
 //Importamos el archivo de .service.ts
 import { BuscaIntegrantesGrupoService } from 'src/app/servicios/busca-integrantes-grupo.service';
-import { ArtistaGrupoService } from 'src/app/servicios/artista-grupo.service'; 
-
+import { ArtistaGrupoService } from 'src/app/servicios/artista-grupo.service';
+/* ALERTAS */
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-busca-integrantes-grupo',
   templateUrl: './busca-integrantes-grupo.component.html',
-  styleUrls: ['./busca-integrantes-grupo.component.css']
+  styleUrls: ['./busca-integrantes-grupo.component.css'],
 })
 export class BuscaIntegrantesGrupoComponent implements OnInit {
   //Se importa el HostBinding
@@ -16,34 +17,42 @@ export class BuscaIntegrantesGrupoComponent implements OnInit {
   //Creamos el arreglo vacio llamado Canciones
   artistas: any = [];
 
-  constructor(private Service: BuscaIntegrantesGrupoService, private router: Router, private activatedRoute: ActivatedRoute, private ArtistaGrupoService: ArtistaGrupoService) { }
+  constructor(
+    private Service: BuscaIntegrantesGrupoService,
+    private activatedRoute: ActivatedRoute,
+    private ArtistaGrupoService: ArtistaGrupoService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerLista();
   }
 
-
-  obtenerLista(){
+  obtenerLista() {
     const params = this.activatedRoute.snapshot.params;
-    if(params['idGrupo']){
+    if (params['idGrupo']) {
       this.Service.getIntegrante(params['idGrupo']).subscribe(
-        res => {
+        (res) => {
           console.log(res); //Muestra en consola
           this.artistas = res; //Muestra en el navegador
         },
-        err => console.error(err)
+        (err) => console.error(err)
       );
     }
   }
 
-  borrar(idArtista: string){
+  borrar(idArtista: string) {
     this.ArtistaGrupoService.delete(idArtista).subscribe(
-      res => {
+      (res) => {
         //Llena el arreglo con la respuesta que enviamos
         console.log(res);
         this.obtenerLista();
+        this.toastr.warning(
+          'El integrante fue eliminado con éxito',
+          'Integrante eliminado'
+        );
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 }

@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ru
 /* ENTIDAD */
 import { Cancion } from 'src/app/modelos/Canciones';
 import { CancionesService } from 'src/app/servicios/canciones.service';
+/* ALERTAS */
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-canciones-form',
   templateUrl: './canciones-form.component.html',
-  styleUrls: ['./canciones-form.component.css']
+  styleUrls: ['./canciones-form.component.css'],
 })
 export class CancionesFormComponent implements OnInit {
   form: FormGroup;
@@ -20,55 +22,68 @@ export class CancionesFormComponent implements OnInit {
     Duracion: '',
     Publicacion: '',
     Genero: '',
-    Idioma: ''
+    Idioma: '',
   };
 
   edit: boolean = false;
 
-  constructor(private Service: CancionesService, private router: Router, 
-    private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
-      this.form = this.fb.group({
-        Nombre: ['', Validators.required],
-        Duracion: ['', Validators.required],
-        Publicacion: ['', Validators.required],
-        Genero: ['', Validators.required],
-        Idioma: ['', Validators.required],
-      })
-     }
+  constructor(
+    private Service: CancionesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {
+    this.form = this.fb.group({
+      Nombre: ['', Validators.required],
+      Duracion: ['', Validators.required],
+      Publicacion: ['', Validators.required],
+      Genero: ['', Validators.required],
+      Idioma: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
-    if(params['idCancion']){
+    if (params['idCancion']) {
       this.Service.getCancion(params['idCancion']).subscribe(
-        res => {
+        (res) => {
           console.log(res); //Muestra en consola
           this.cancion = res; //Muestra en el navegador
           this.edit = true; //Asignamos que es verdadero
         },
-        err => console.error(err)
+        (err) => console.error(err)
       );
     }
   }
 
-  add(){
+  add() {
     this.Service.create(this.cancion).subscribe(
-      res => {
+      (res) => {
         //Llenamos el arreglo con la respuesta
         console.log(res);
         this.router.navigate(['canciones']);
+        this.toastr.success(
+          `La canción '${this.cancion.Nombre}' fue agregada con éxito`,
+          'Canción Agregada'
+        );
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  actualiza(){
+  actualiza() {
     const params = this.activatedRoute.snapshot.params;
     this.Service.update(params['idCancion'], this.cancion).subscribe(
-      res => {
+      (res) => {
         console.log(res);
         this.router.navigate(['/canciones']);
+        this.toastr.info(
+          `La canción '${this.cancion.Nombre}' fue actualizada con éxito`,
+          'Canción Actualizada'
+        );
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 }

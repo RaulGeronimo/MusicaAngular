@@ -1,13 +1,15 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; //Para enviar a una ruta Especifica
+import { ActivatedRoute } from '@angular/router'; //Para enviar a una ruta Especifica
 //Importamos el archivo de .service.ts
 import { BuscaCancionGrupoService } from 'src/app/servicios/busca-cancion-grupo.service';
 import { CancionesService } from 'src/app/servicios/canciones.service';
+/* ALERTAS */
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-busca-cancion-grupo',
   templateUrl: './busca-cancion-grupo.component.html',
-  styleUrls: ['./busca-cancion-grupo.component.css']
+  styleUrls: ['./busca-cancion-grupo.component.css'],
 })
 export class BuscaCancionGrupoComponent implements OnInit {
   //Se importa el HostBinding
@@ -15,34 +17,42 @@ export class BuscaCancionGrupoComponent implements OnInit {
   //Creamos el arreglo vacio llamado Canciones
   Canciones: any = [];
 
-  constructor(private Service: BuscaCancionGrupoService, private router: Router, private activatedRoute: ActivatedRoute, private CancionesAlbumService: CancionesService) { }
+  constructor(
+    private Service: BuscaCancionGrupoService,
+    private activatedRoute: ActivatedRoute,
+    private CancionesAlbumService: CancionesService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerLista();
   }
 
-
-  obtenerLista(){
+  obtenerLista() {
     const params = this.activatedRoute.snapshot.params;
-    if(params['idGrupo']){
+    if (params['idGrupo']) {
       this.Service.getCancion(params['idGrupo']).subscribe(
-        res => {
+        (res) => {
           console.log(res); //Muestra en consola
           this.Canciones = res; //Muestra en el navegador
         },
-        err => console.error(err)
+        (err) => console.error(err)
       );
     }
   }
 
-  borrar(idCancion: string){
+  borrar(idCancion: string) {
     this.CancionesAlbumService.delete(idCancion).subscribe(
-      res => {
+      (res) => {
         //Llena el arreglo con la respuesta que enviamos
         console.log(res);
         this.obtenerLista();
+        this.toastr.warning(
+          'La canción fue eliminada con éxito',
+          'Canción eliminada'
+        );
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 }
