@@ -5,6 +5,7 @@ import { BuscaAlbumGrupoService } from 'src/app/servicios/busca-album-grupo.serv
 import { AlbumService } from 'src/app/servicios/album.service';
 /* ALERTAS */
 import { ToastrService } from 'ngx-toastr';
+import { GruposService } from 'src/app/servicios/grupos.service';
 
 @Component({
   selector: 'app-busca-album-grupo',
@@ -14,18 +15,22 @@ import { ToastrService } from 'ngx-toastr';
 export class BuscaAlbumGrupoComponent {
   //Se importa el HostBinding
   @HostBinding('class') classes = 'row';
+
   //Creamos el arreglo vacio llamado Canciones
   Album: any = [];
+  Grupo: any = [];
 
   constructor(
     private Service: BuscaAlbumGrupoService,
     private activatedRoute: ActivatedRoute,
     private AlbumService: AlbumService,
+    private GrupoService: GruposService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.obtenerLista();
+    this.obtenerGrupo();
   }
 
   obtenerLista() {
@@ -35,6 +40,23 @@ export class BuscaAlbumGrupoComponent {
         (res) => {
           console.log(res); //Muestra en consola
           this.Album = res; //Muestra en el navegador
+        },
+        (err) => console.error(err)
+      );
+    }
+  }
+
+  obtenerGrupo() {
+    const params = this.activatedRoute.snapshot.params;
+    if (params['idGrupo']) {
+      this.GrupoService.getGrupo(params['idGrupo']).subscribe(
+        (res) => {
+          console.log(res); //Muestra en consola
+          this.Grupo = res; //Muestra en el navegador
+          this.toastr.success(
+            `Álbums del grupo '${this.Grupo.Nombre}'`,
+            'Lista de Álbums'
+          );
         },
         (err) => console.error(err)
       );
